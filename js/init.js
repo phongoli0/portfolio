@@ -12,6 +12,7 @@ jQuery(document).ready(function(){
 	// here all ready functions
 	
 	arlo_tm_hamburger();
+	alro_tm_hamburger_lists();
 	arlo_tm_responsive();
 	arlo_tm_imgtosvg();
 	arlo_tm_magnific_popup();
@@ -80,7 +81,6 @@ function arlo_tm_hamburger(){
 	
 	hamburger.on('click',function(){
 		var element 	= jQuery(this);
-		
 		if(element.hasClass('is-active')){
 			element.removeClass('is-active');
 			mobileMenu.slideUp();
@@ -91,6 +91,18 @@ function arlo_tm_hamburger(){
 		return false;
 	});
 }
+
+function alro_tm_hamburger_lists(){
+
+	var mobileMenu		= jQuery('.arlo_tm_mobile_menu_wrap');
+	var mobileMenuLists = jQuery('.mob_menu .anchor_nav li');
+	var element = jQuery('.hamburger--collapse-r');
+	mobileMenuLists.on('click', function(){
+		mobileMenu.slideUp();
+		element.removeClass('is-active');
+	});
+}
+
 
 function arlo_tm_imgtosvg(){
 	
@@ -325,39 +337,43 @@ function arlo_tm_anchor(){
 // -----------------------------------------------------
 
 function arlo_tm_contact_form(){
-	
 	"use strict";
 	
-	jQuery(".contact_form #send_message").on('click', function(){
-		
-		var name 		= jQuery(".contact_form #name").val();
-		var email 		= jQuery(".contact_form #email").val();
-		var message 	= jQuery(".contact_form #message").val();
-		var subject 	= jQuery(".contact_form #subject").val();
-		var success     = jQuery(".contact_form .returnmessage").data('success');
+	$(".contact_form #send_message").on('click', function(){
+		var name = $(".contact_form #name").val();
+		var email = $(".contact_form #email").val();
+		var message = $(".contact_form #message").val();
+		var subject = $(".contact_form #subject").val();
+		var success = $(".contact_form .returnmessage").data('success');
 	
-		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
+		$(".contact_form .returnmessage").empty(); //To empty previous error/success message.
 		//checking for blank fields	
 		if(name===''||email===''||message===''){
 			
-			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
+			$('div.empty_notice').slideDown(500).delay(5000).slideUp(500);
 		}
 		else{
 			// Returns successful data submission message when the entered information is stored in database.
-			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
+
+			jQuery.post("/mail_handler.php",{ name: name, email: email, message:message, subject: subject}, function(data) {
 				
-				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
+				var formattedData = data.replace("0Message", "Message");
+				if(formattedData === "Message has been sent"){
+					$("#contact_form")[0].reset();
+				}
+
+				$(".contact_form .returnmessage").append(formattedData);//Append returned message to message paragraph
 				
 				
-				if(jQuery(".contact_form .returnmessage span.contact_error").length){
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
+				if($(".contact_form .returnmessage span.contact_error").length){
+					$(".contact_form .returnmessage").slideDown(500).delay(5000).slideUp(500);		
 				}else{
-					jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
+					$(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
+					$(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
 				}
 				
-				if(data===""){
-					jQuery("#contact_form")[0].reset();//To reset form fields on success
+				if(formattedData===""){
+					$("#contact_form")[0].reset();//To reset form fields on success
 				}
 				
 			});
@@ -538,7 +554,7 @@ function arlo_tm_animate_text(){
 	var animateSpan	= jQuery('.arlo_tm_animation_text_word');
 	
 		animateSpan.typed({
-			strings: ["Full Stack Developer", "Front-End Developer", "Back-End Developer"],
+			strings: ["Software Engineer", "Front-End Developer"],
 			loop: true,
 			startDelay: 1e3,
 			backDelay: 2e3
