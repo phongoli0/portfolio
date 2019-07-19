@@ -21,6 +21,9 @@
 <link rel="stylesheet" type="text/css" href="css/plugins.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script src="/js/modal.js"></script>
+
 <!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
 <!-- /STYLES -->
 
@@ -98,7 +101,7 @@
 				<div class="leftpart_bottom">
 					<div class="social_wrap">
 						<ul>
-							<li><a href="https://www.linkedin.com/in/phongoli0/" target="_blank"><i class="xcon-linkedin"></i></a></li>
+							<li><a href="https://www.linkedin.com/in/ptruong6/" target="_blank"><i class="xcon-linkedin"></i></a></li>
 							<li><a href="https://www.github.com/phongoli0/" target="_blank"><i class="devicon-github-plain "></i></a></li>
 						</ul>
 					</div>
@@ -130,7 +133,7 @@
 										<p><span class="arlo_tm_animation_text_word"></span> |</p>
 									</div>
 									<div class="social_wrap">
-										<a href="https://www.linkedin.com/in/phongoli0/" target="_blank"><i class="xcon-linkedin"></i></a>
+										<a href="https://www.linkedin.com/in/ptruong6/" target="_blank"><i class="xcon-linkedin"></i></a>
 										<a href="https://www.github.com/phongoli0/" target="_blank"><i class="devicon-github-plain "></i></a>
 									</div>
 								</div>
@@ -202,7 +205,7 @@
 							<div class="arlo_tm_portfolio_wrap">
 								<div class="arlo_tm_title_holder portfolio">
 									<h3>Latest Projects</h3>
-									<span>Check out my latest projects</span>
+									<span>Click or tap on a project to learn more</span>
 								</div>
 								<div class="arlo_tm_portfolio_titles"></div>
 								<ul class="arlo_tm_portfolio_filter">
@@ -212,6 +215,14 @@
 									<li><a href="#" data-filter=".php">PHP</a></li>
 								</ul>
 								<ul class="arlo_tm_portfolio_list gallery_zoom">
+									<li class="javascript">
+										<div id="memory-match-modal-button" class="modal-button">
+											<div class="entry portfolio-thumbnail arlo_tm_portfolio_animation_wrap" data-title="Memory Match" data-category="JavaScript">
+												<img class="" src="img\projects\memory-match.png" alt="" />
+												<div class="arlo_tm_portfolio_image_main" data-img-url="img\projects\memory-match.png"></div>
+											</div>
+										</div>	
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -424,10 +435,52 @@
 	</div>
 </div>
 <!-- / WRAPPER ALL -->
+
+<!-- MODALS -->
+<div id="memory-match-modal" class="modal">
+	<div class="modal-content">
+        <span class="close-button">&times;</span>
+        
+        <div class="view-project">
+            <div class="project-media" style="background-image:url(img/projects/memory-match.png)"></div>
+            <div class="view-project-content pt-10">
+                <div class="modal-title">
+                    <h2>Animus Match</h2>
+                </div>
+                <p>
+					Animus Match is a card matching game.<br>
+					<br>
+					You are stuck in the Animus and the only way out is to remember your past lives by matching the cards of your ancestors.<br>
+					<br>
+					This game was built using core JavaScript and CSS
+				</p>
+                <ul class="project-info-list">
+                    <li class="text-uppercase">
+                        <span>AUDIENCE</span>Assassin's Creed fans</li>
+                    <li class="text-uppercase">
+                        <span>TYPE</span>Games</li>
+                    <li class="text-uppercase">
+                        <span>WEBSITE</span>
+                        <a href="https://phongtruong.com/memory-match" target='_blank'>https://phongtruong.com/memory-match</a>
+					</li>
+					<li class="text-uppercase">
+						<span>GITHUB</span>
+						<a href="https://github.com/phongoli0/memory_match/" target='_blank'>https://github.com/phongoli0/memory_match</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+        
+	</div>
+</div>
+<!-- /MODALS -->
 	
 <!-- SCRIPTS -->
 <script src="js/jquery.js"></script>
 <!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->	
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jqBootstrapValidation.js"></script>
+<script src="js/contact_me.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/init.js"></script>
 <!-- /SCRIPTS -->
