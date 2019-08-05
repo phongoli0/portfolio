@@ -174,7 +174,21 @@
 										</div>
 										<div class="definition">
 											<p>Hi! My name is <strong>Phong Truong</strong>. 
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet est posuere, ornare est in, gravida nisl. Praesent consequat ipsum ut rhoncus porta. Nam placerat eleifend tortor, at tincidunt nunc interdum vitae. Suspendisse potenti. Sed tortor lectus, ornare ut purus vehicula, interdum bibendum felis. Sed dolor velit, dictum sit amet ante sollicitudin, viverra maximus nibh. Vestibulum a nulla eget eros sollicitudin aliquet vel quis ante. Morbi accumsan mauris ac dolor luctus auctor. Etiam molestie ex tortor, nec faucibus elit condimentum nec. Integer vitae tincidunt nulla. Nullam sem urna, aliquet quis fringilla nec, auctor at felis. Suspendisse fermentum iaculis ullamcorper.</p>
+												I graduated California State University, Fullerton with a degree in psychology because I love the way the human mind works and how we interact with each other. 
+												I have used what I learned to help improve sales, train employees, and increase productivity.<br>
+												<br>
+												While I love psychology my true passion has always been technology. 
+												I have been tinkering and troubleshooting computers since I was 6 years old. 
+												In my free time I keep up with the latest tech news and trends. That being said, I never got into coding; until a former colleague told me what he has been up to and showed me all the cools apps he was making for fun. 
+												I looked up some beginner coding sites, and after few lessons I was hooked.<br>
+												<br>
+												I enrolled at Learning Fuze, an accelerated Web Development Program. 
+												During my time there I learn many different languages such as Javascript, CSS, HTML, PHP and many more. 
+												Even though every week felt like finals week I had a blast designing, strategizing, and coding awesome apps.<br>
+												<br>
+												I truly believe technology is key to bringing people together. 
+												I'm both excited and eager to deepen my knowledge and further improve my coding abilities to help people share experiences and connect with each other.
+											</p>
 										</div>
 
 										<div class="buttons_wrap">
@@ -213,13 +227,30 @@
 									<li><a href="#" data-filter=".javascript">JavaScript</a></li>
 									<li><a href="#" data-filter=".react">React</a></li>
 									<li><a href="#" data-filter=".php">PHP</a></li>
+									<li><a href="#" data-filter=".node">Node.js</a></li>
 								</ul>
 								<ul class="arlo_tm_portfolio_list gallery_zoom">
 									<li class="javascript">
 										<div id="memory-match-modal-button" class="modal-button">
-											<div class="entry portfolio-thumbnail arlo_tm_portfolio_animation_wrap" data-title="Memory Match" data-category="JavaScript">
-												<img class="" src="img\projects\memory-match.png" alt="" />
-												<div class="arlo_tm_portfolio_image_main" data-img-url="img\projects\memory-match.png"></div>
+											<div class="entry portfolio-thumbnail arlo_tm_portfolio_animation_wrap" data-title="Animus Match" data-category="JavaScript">
+												<img class="" src="img\projects\animus-match.png" alt="" />
+												<div class="arlo_tm_portfolio_image_main" data-img-url="img\projects\animus-match.png"></div>
+											</div>
+										</div>	
+									</li>
+									<li class="javascript react node">
+										<div id="sgt-modal-button" class="modal-button">
+											<div class="entry portfolio-thumbnail arlo_tm_portfolio_animation_wrap" data-title="Student Grade Table" data-category="JavaScript React Node.js mySQL">
+												<img class="" src="img\projects\sgt.png" alt="" />
+												<div class="arlo_tm_portfolio_image_main" data-img-url="img\projects\sgt.png"></div>
+											</div>
+										</div>	
+									</li>
+									<li class="javascript react php">
+										<div id="photo-pilgrim-modal-button" class="modal-button">
+											<div class="entry portfolio-thumbnail arlo_tm_portfolio_animation_wrap" data-title="Photo Pilgrim" data-category="JavaScript React PHP mySQL">
+												<img class="" src="img\projects\photo-pilgrim.png" alt="" />
+												<div class="arlo_tm_portfolio_image_main" data-img-url="img\projects\photo-pilgrim.png"></div>
 											</div>
 										</div>	
 									</li>
@@ -440,9 +471,8 @@
 <div id="memory-match-modal" class="modal">
 	<div class="modal-content">
         <span class="close-button">&times;</span>
-        
         <div class="view-project">
-            <div class="project-media" style="background-image:url(img/projects/memory-match.png)"></div>
+            <div class="project-media" style="background-image:url(img/projects/animus-match.png)"></div>
             <div class="view-project-content pt-10">
                 <div class="modal-title">
                     <h2>Animus Match</h2>
@@ -450,15 +480,11 @@
                 <p>
 					Animus Match is a card matching game.<br>
 					<br>
-					You are stuck in the Animus and the only way out is to remember your past lives by matching the cards of your ancestors.<br>
+					You are a direct descendant of Ezio and have been kidnapped by Abstergo. You must sync your memories of other assassins to unlock your innate abilities and free yourself.<br>
 					<br>
-					This game was built using core JavaScript and CSS
+					I used JavaScript and jQuery for core game functionality while using HTML5 and CSS3 for design, animation and responsiveness.
 				</p>
                 <ul class="project-info-list">
-                    <li class="text-uppercase">
-                        <span>AUDIENCE</span>Assassin's Creed fans</li>
-                    <li class="text-uppercase">
-                        <span>TYPE</span>Games</li>
                     <li class="text-uppercase">
                         <span>WEBSITE</span>
                         <a href="https://phongtruong.com/memory_match" target='_blank'>https://phongtruong.com/memory_match</a>
@@ -469,8 +495,69 @@
 					</li>
                 </ul>
             </div>
-        </div>
-        
+		</div>
+	</div>
+</div>
+
+<div id="sgt-modal" class="modal">
+	<div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="view-project">
+            <div class="project-media" style="background-image:url(img/projects/sgt.png)"></div>
+            <div class="view-project-content pt-10">
+                <div class="modal-title">
+                    <h2>Student Grade Table</h2>
+                </div>
+                <p>
+					A Content Management System that allows the professors/teacher to keep track of student’s grades.<br>
+					<br>
+					This application was built using using React, JavaScript and Bootstrap 4 for responsiveness for the Front End. Node.js backend and a MySQL database.
+				</p>
+                <ul class="project-info-list">
+                    <li class="text-uppercase">
+                        <span>WEBSITE</span>
+                        <a href="https://phongtruong.com/sgt" target='_blank'>https://phongtruong.com/sgt</a>
+					</li>
+					<li class="text-uppercase">
+						<span>GITHUB</span>
+						<a href="https://github.com/phongoli0/sgt-react" target='_blank'>https://github.com/phongoli0/sgt-react</a>
+					</li>
+                </ul>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div id="photo-pilgrim-modal" class="modal">
+	<div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="view-project">
+            <div class="project-media" style="background-image:url(img/projects/photo-pilgrim.png)"></div>
+            <div class="view-project-content pt-10">
+                <div class="modal-title">
+                    <h2>Photo Pilgrim</h2>
+                </div>
+                <p>
+					Photo Pilgrim is a photo sharing and location discovery social media application.<br>
+					<br>
+					The application was the final project for the Web Development Program. I was the Lead Back-End Developer for this project.<br>
+					<br>
+					The back-end was built using PHP with a MySQL database. The front-end was built using JavaScript, React, and Bootstrap.<br>
+					<br>
+					The project is still under construction as features and visuals are constantly being added and updated.
+				</p>
+                <ul class="project-info-list">
+                    <li class="text-uppercase">
+                        <span>WEBSITE</span>
+                        <a href="http://www.photo-pilgrim.com/" target='_blank'>http://www.photo-pilgrim.com/</a>
+					</li>
+					<li class="text-uppercase">
+						<span>GITHUB</span>
+						<a href="https://github.com/Learning-Fuze/c319_photo_pilgrim" target='_blank'>https://github.com/Learning-Fuze/c319_photo_pilgrim</a>
+					</li>
+                </ul>
+            </div>
+		</div>
 	</div>
 </div>
 <!-- /MODALS -->
