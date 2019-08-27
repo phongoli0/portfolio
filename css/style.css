@@ -2017,6 +2017,8 @@ img.svg{
 	border: none;
 	font-size: 1rem;
 	padding-right: 10px;
+	background-color: white;
+
 }
 
 .close-success-message-button{
@@ -2027,6 +2029,7 @@ img.svg{
 	border: none;
 	font-size: 1rem;
 	padding-right: 10px;
+	background-color: white;
 }
 /*---------------------------------------------------*/
 /*	10) EDREA TO TOP
@@ -2502,5 +2505,8 @@ img.svg{
 .portfolio-thumbnail:hover{
 	background-image: linear-gradient(rgba(0,0,0,.8));
 	transform: scale(1.03);
+}
+#phoneAndEmail:hover{
+	color: blue;
 }
 
