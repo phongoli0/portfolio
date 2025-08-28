@@ -1803,6 +1803,12 @@ img.svg{
 	right: 13px;
 	transform: rotate(135deg);
 }
+.hidden {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+}
 
 /*---------------------------------------------------*/
 /*	09) ARLO CONTACT

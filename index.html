@@ -394,49 +394,39 @@
 								<div class="rightbox">
 									<div class="arlo_tm_contact_wrap">
 										<div class="main_input_wrap">
-											<form id="contact-form" name="contact-form" method="POST" data-netlify="true">
+											<form id="contact-form" name="contact-form" method="POST" data-netlify="true" action="/thank-you">
 												<input type="hidden" name="form-name" value="contact-form">
+												<p class="hidden">
+													<label>Don’t fill this out if you're human: <input name="bot-field"></label>
+												</p>
 												<div class="wrap">
 													<div class="row">
-														<div class="col-md-6">
-															<div class="form-group error">
-																<input name="name" class="form-control" id="name" type="text"
-																	placeholder="Your Name" required="required"
-																	data-validation-required-message="Please enter your name.">
-																<div class="help-block alert-danger"></div>
-															</div>
+													<div class="col-md-6">
+														<div class="form-group error">
+														<input name="name" class="form-control" id="name" type="text" placeholder="Your Name" required>
 														</div>
-														<div class="col-md-6">
-															<div class="form-group error">
-																<input name="email" class="form-control" id="email" type="email"
-																	placeholder="Your Email" required="required"
-																	data-validation-required-message="Please enter your email.">
-																<div class="help-block alert-danger"></div>
-															</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group error">
+														<input name="email" class="form-control" id="email" type="email" placeholder="Your Email" required>
 														</div>
-														<div class="col-md-6">
-															<div class="form-group error">
-																<input name="subject" class="form-control" type="text" id="subject"
-																	placeholder="Subject" required="required"
-																	data-validation-required-message="Please enter a subject.">
-																<div class="help-block alert-danger"></div>
-															</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group error">
+														<input name="subject" class="form-control" type="text" id="subject" placeholder="Subject" required>
 														</div>
-														<div class="col-md-6">
-															<div class="form-group error">
-																<textarea name="message" class="form-control" id="message" cols="30" rows="10"
-																	placeholder="Message" required="required"
-																	data-validation-required-message="Please enter your message."></textarea>
-																<div class="help-block alert-danger"></div>
-															</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group error">
+														<textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
 														</div>
-														<div class="clearfix"></div>
-														<div class="col-md-12 arlo_tm_contact_wrap">
-															<div id="success"></div>
-															<div class="arlo_tm_button">
-																<button id="sendMessageButton" name="submit" value="submit"><span>Send Message</span></button>
-															</div>
+													</div>
+													<div class="clearfix"></div>
+													<div class="col-md-12 arlo_tm_contact_wrap">
+														<div class="arlo_tm_button">
+														<button id="sendMessageButton" name="submit" value="submit"><span>Send Message</span></button>
 														</div>
+													</div>
 													</div>
 												</div>
 											</form>
