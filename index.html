@@ -394,40 +394,44 @@
 								<div class="rightbox">
 									<div class="arlo_tm_contact_wrap">
 										<div class="main_input_wrap">
-											<form id="contact-form" name="contact-form" method="POST" data-netlify="true" action="/thank-you">
+											<form id="contact-form" name="contact-form" method="POST" data-netlify="true">
 												<input type="hidden" name="form-name" value="contact-form">
 												<p class="hidden">
 													<label>Don’t fill this out if you're human: <input name="bot-field"></label>
 												</p>
 												<div class="wrap">
 													<div class="row">
-													<div class="col-md-6">
-														<div class="form-group error">
-														<input name="name" class="form-control" id="name" type="text" placeholder="Your Name" required>
+														<div class="col-md-6">
+															<div class="form-group error">
+																<input name="name" class="form-control" id="name" type="text" placeholder="Your Name" required>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group error">
+																<input name="email" class="form-control" id="email" type="email" placeholder="Your Email" required>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group error">
+																<input name="subject" class="form-control" type="text" id="subject" placeholder="Subject" required>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group error">
+																<textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
+															</div>
+														</div>
+														<div class="clearfix"></div>
+														<div class="col-md-12 arlo_tm_contact_wrap">
+															<div class="arlo_tm_button">
+																<button id="sendMessageButton" name="submit" value="submit"><span>Send Message</span></button>
+															</div>
 														</div>
 													</div>
-													<div class="col-md-6">
-														<div class="form-group error">
-														<input name="email" class="form-control" id="email" type="email" placeholder="Your Email" required>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group error">
-														<input name="subject" class="form-control" type="text" id="subject" placeholder="Subject" required>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group error">
-														<textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
-														</div>
-													</div>
-													<div class="clearfix"></div>
-													<div class="col-md-12 arlo_tm_contact_wrap">
-														<div class="arlo_tm_button">
-														<button id="sendMessageButton" name="submit" value="submit"><span>Send Message</span></button>
-														</div>
-													</div>
-													</div>
+												</div>
+												<!-- Success message placeholder -->
+												<div id="form-success-message" style="display: none; color: green; margin-top: 20px;">
+													Thank you! Your message has been sent successfully.
 												</div>
 											</form>
 										</div>
@@ -557,8 +561,10 @@
 <script src="js/jquery.js"></script>
 <!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->	
 <script src="js/bootstrap.min.js"></script>
+<!--
 <script src="js/jqBootstrapValidation.js"></script>
 <script src="js/contact_me.js"></script>
+-->
 <script src="js/plugins.js"></script>
 <script src="js/init.js"></script>
 <!-- /SCRIPTS -->
