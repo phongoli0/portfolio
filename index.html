@@ -23,7 +23,9 @@
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
 <link rel="stylesheet" href="css/modal.css">
+<script src="js/jquery.js"></script>
 <script src="js/modal.js"></script>
+<script src="js/autoUpdateCopyrightYear.js"></script>
 
 <!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
 <!-- /STYLES -->
@@ -392,45 +394,40 @@
 								<div class="rightbox">
 									<div class="arlo_tm_contact_wrap">
 										<div class="main_input_wrap">
-											<form id="contact-form" name="contact-form" action="mail_handler.php" method="POST"
-												novalidate="novalidate" class="error contact_form">
+											<form id="contact-form" name="contact-form" method="POST" data-netlify="true">
+												<input type="hidden" name="form-name" value="contact-form">
 												<div class="wrap">
 													<div class="row">
 														<div class="col-md-6">
 															<div class="form-group error">
 																<input name="name" class="form-control" id="name" type="text"
 																	placeholder="Your Name" required="required"
-																	data-validation-required-message="Please enter your name."
-																	aria-invalid="true">
-																<div class="help-block alert-danger "></div>
+																	data-validation-required-message="Please enter your name.">
+																<div class="help-block alert-danger"></div>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group error">
 																<input name="email" class="form-control" id="email" type="email"
 																	placeholder="Your Email" required="required"
-																	data-validation-required-message="Please enter your email."
-																	aria-invalid="true">
-																<div class="help-block alert-danger "></div>
+																	data-validation-required-message="Please enter your email.">
+																<div class="help-block alert-danger"></div>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group error">
 																<input name="subject" class="form-control" type="text" id="subject"
 																	placeholder="Subject" required="required"
-																	data-validation-required-message="Please enter a subject."
-																	aria-invalid="false">
-																<div class="help-block alert-danger "></div>
+																	data-validation-required-message="Please enter a subject.">
+																<div class="help-block alert-danger"></div>
 															</div>
 														</div>
 														<div class="col-md-6">
-
 															<div class="form-group error">
 																<textarea name="message" class="form-control" id="message" cols="30" rows="10"
 																	placeholder="Message" required="required"
-																	data-validation-required-message="Please enter your message."
-																	aria-invalid="true"></textarea>
-																<div class="help-block alert-danger "></div>
+																	data-validation-required-message="Please enter your message."></textarea>
+																<div class="help-block alert-danger"></div>
 															</div>
 														</div>
 														<div class="clearfix"></div>
@@ -450,16 +447,7 @@
 						</div>
 						<div class="arlo_tm_footer_wrap">
 							<div class="container">
-								<p>&copy; Copyright 2019 phongtruong.com, All Rights Reserved.</p>
-								<script>
-									// Update copyright year to current year
-									document.addEventListener('DOMContentLoaded', function() {
-										var copyright = document.querySelector('.arlo_tm_footer_wrap p');
-										if (copyright) {
-											copyright.innerHTML = `&copy; Copyright ${new Date().getFullYear()} phongtruong.com, All Rights Reserved.`;
-										}
-									});
-								</script>
+								<p>&copy; Copyright 20XX phongtruong.com, All Rights Reserved.</p>
 							</div>
 						</div>
 					</div>
