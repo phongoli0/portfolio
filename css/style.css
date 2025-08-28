@@ -2458,7 +2458,12 @@ img.svg{
 	.arlo_tm_about_wrap{flex-direction: column;}
 	.arlo_tm_about_wrap .rightpart .info_list ul li{width: 100%;}
 	.arlo_tm_about_wrap .leftbox{width: 100%;padding-right: 0px;}
-	.arlo_tm_about_wrap .leftbox .about_image_wrap{display: none;}
+
+	.arlo_tm_about_wrap .leftbox .about_image_wrap{display: block; padding: 0 5% 5%;}
+	.arlo_tm_about_wrap .leftbox .about_image_wrap .border .inner{display: none;}
+	.arlo_tm_about_wrap {padding-bottom: 20px;}
+	.arlo_tm_title_holder{padding: 0% 0 10%;}
+
 	.arlo_tm_about_wrap .rightpart{width: 100%;}
 	.arlo_tm_skills_wrap .inner_wrap{flex-direction: column;}
 	.arlo_tm_skills_wrap .leftbox{padding-right: 0px;width: 100%;margin-bottom: 60px;}
