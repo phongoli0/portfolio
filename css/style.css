@@ -2739,17 +2739,8 @@ img.svg {
     width: 100%;
     padding-right: 0px;
   }
-
-
-   .arlo_tm_about_wrap .leftbox .about_image_wrap {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  .arlo_tm_about_wrap .leftbox .about_image_wrap {
+    display: none;
   } 
   .arlo_tm_about_wrap .leftbox .about_image_wrap .border .inner {
     display: none;
@@ -2805,6 +2796,15 @@ img.svg {
     width: 100%;
     padding-left: 0px;
   }
+  .arlo_tm_title_holder.portfolio {
+    padding-bottom: 20px;
+  }
+  .arlo_tm_title_holder.about{
+    padding-bottom: 20px;
+  }
+.mobileImage{
+  display: block!important;
+}
 }
 @media (max-width: 768px) {
   .arlo_tm_hero_header_wrap .name_holder h3 {
@@ -2918,4 +2918,7 @@ img.svg {
 }
 .arlo_tm_contact_wrap_all {
   padding-top: 40px;
+}
+.mobileImage{
+  display: none;
 }
