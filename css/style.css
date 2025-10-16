@@ -2743,6 +2743,7 @@ img.svg {
 
    .arlo_tm_about_wrap .leftbox .about_image_wrap {
     display: block;
+    padding: 5%;
   } 
   .arlo_tm_about_wrap .leftbox .about_image_wrap .border .inner {
     display: none;
