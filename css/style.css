@@ -2804,6 +2804,7 @@ img.svg {
   }
 .mobileImage{
   display: block!important;
+  padding: 5%;
 }
 }
 @media (max-width: 768px) {
