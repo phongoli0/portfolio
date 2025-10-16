@@ -2741,9 +2741,9 @@ img.svg {
   }
 
 
-  /* .arlo_tm_about_wrap .leftbox .about_image_wrap {
-    display: none;
-  } */
+   .arlo_tm_about_wrap .leftbox .about_image_wrap {
+    display: block;
+  } 
   .arlo_tm_about_wrap .leftbox .about_image_wrap .border .inner {
     display: none;
   }
