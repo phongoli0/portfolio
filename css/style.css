@@ -2742,8 +2742,14 @@ img.svg {
 
 
    .arlo_tm_about_wrap .leftbox .about_image_wrap {
-    display: block;
-    padding: 5%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   } 
   .arlo_tm_about_wrap .leftbox .about_image_wrap .border .inner {
     display: none;
