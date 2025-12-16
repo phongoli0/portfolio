@@ -2741,14 +2741,14 @@ img.svg {
   }
   .arlo_tm_about_wrap .leftbox .about_image_wrap {
     display: none;
-  } 
+  }
   .arlo_tm_about_wrap .leftbox .about_image_wrap .border .inner {
     display: none;
   }
-  .arlo_tm_mini_title_holder{
+  .arlo_tm_mini_title_holder {
     padding-top: 20px;
   }
-  .arlo_tm_title_holder.contact{
+  .arlo_tm_title_holder.contact {
     padding-bottom: 40px;
   }
 
@@ -2799,13 +2799,12 @@ img.svg {
   .arlo_tm_title_holder.portfolio {
     padding-bottom: 20px;
   }
-  .arlo_tm_title_holder.about{
+  .arlo_tm_title_holder.about {
     padding-bottom: 20px;
   }
-.mobileImage{
-  display: block!important;
-  padding: 5%;
-}
+  .arlo_tm_about_wrap .rightbox .about_image_wrap {
+    display: block !important;
+  }
 }
 @media (max-width: 768px) {
   .arlo_tm_hero_header_wrap .name_holder h3 {
@@ -2920,6 +2919,6 @@ img.svg {
 .arlo_tm_contact_wrap_all {
   padding-top: 40px;
 }
-.mobileImage{
+.arlo_tm_about_wrap .rightbox .about_image_wrap {
   display: none;
 }
