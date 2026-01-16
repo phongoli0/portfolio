@@ -353,30 +353,12 @@ function arlo_tm_contact_form(){
 			$('div.empty_notice').slideDown(500).delay(5000).slideUp(500);
 		}
 		else{
-			// Returns successful data submission message when the entered information is stored in database.
-
-			jQuery.post("/mail_handler.php",{ name: name, email: email, message:message, subject: subject}, function(data) {
-				
-				var formattedData = data.replace("0Message", "Message");
-				if(formattedData === "Message has been sent"){
-					$("#contact_form")[0].reset();
-				}
-
-				$(".contact_form .returnmessage").append(formattedData);//Append returned message to message paragraph
-				
-				
-				if($(".contact_form .returnmessage span.contact_error").length){
-					$(".contact_form .returnmessage").slideDown(500).delay(5000).slideUp(500);		
-				}else{
-					$(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
-					$(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
-				}
-				
-				if(formattedData===""){
-					$("#contact_form")[0].reset();//To reset form fields on success
-				}
-				
-			});
+			// Switch to native form submission so hosting (e.g., Netlify) can handle the form.
+			var nativeForm = document.getElementById('contact-form');
+			if(nativeForm){
+				// Trigger a normal submit (this will perform a full POST and let the host process the form)
+				nativeForm.submit();
+			}
 		}
 		return false; 
 	});
