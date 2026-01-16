@@ -2446,6 +2446,9 @@ img.svg{
 @media (max-width: 1400px) {
 	.arlo_tm_about_wrap .leftbox{padding-right: 0px;}
 }
+
+/* mobile-only avatar: hidden by default on desktop */
+.mobile-profile-avatar{ display: none; }
 @media (max-width: 1200px) {
 	.arlo_tm_services_wrap .list_wrap ul li{width: 50%;}
 	#arlo_tm_popup_blog .close{right: 0px;}
@@ -2471,6 +2474,30 @@ img.svg{
 	.arlo_tm_mobile_header_wrap{display: block;}
 	.arlo_tm_about_wrap .author_wrap{flex-direction: column;align-items: baseline; }
 	.arlo_tm_about_wrap .rightbox{width: 100%;padding-left: 0px;}
+	/* mobile avatar shown above intro text: centered and larger */
+	.mobile-profile-avatar{
+		display: block;
+		width: 180px;
+		max-width: 60%;
+		height: auto;
+		border-radius: 6px;
+		margin: 0 auto 22px auto;
+	}
+
+	/* reduce title spacing on mobile to fit theme/pattern */
+	.arlo_tm_title_holder{
+		padding-bottom: 30px; /* was 100px on desktop */
+	}
+
+	/* reduce contact title spacing on mobile as well */
+	.arlo_tm_title_holder.contact{
+		padding-bottom: 30px; /* was 93px on desktop */
+	}
+
+	/* reduce about wrapper spacing on mobile to tighten layout */
+	.arlo_tm_about_wrap{
+		padding-bottom: 20px; /* was 60px on desktop */
+	}
 }
 @media (max-width: 768px) {
 	.arlo_tm_hero_header_wrap .name_holder h3{font-size: 40px;}

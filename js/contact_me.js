@@ -19,53 +19,14 @@ $(function () {
           if (firstName.indexOf(' ') >= 0) {
               firstName = name.split(' ').slice(0, -1).join(' ');
           }
-          $.ajax({
-              url: $(form).attr('action'),
-              type: "POST",
-              data: {
-                  name: name,
-                  subject: subject,
-                  email: email,
-                  message: message
-              },
-              beforeSend: function(){
-                $('#success').html("<div class='alert alert-success'>");
-                $('#success > .alert-success').html("<button type='button' class='close-success-message-button' data-dismiss='alert' aria-hidden='true'>&times;")
-                    .append("</button>");
-                $('#success > .alert-success')
-                    .append("<strong>sending. </strong>");
-                $('#success > .alert-success')
-                    .append('</div>');
-              },
-              cache: false,
-              success: function () {
-                  // Success message
-                  $('#success').html("<div class='alert alert-success'>");
-                  $('#success > .alert-success').html("<button type='button' class='close-success-message-button' data-dismiss='alert' aria-hidden='true'>&times;")
-                      .append("</button>");
-                  $('#success > .alert-success')
-                      .append("<strong>Your message has been sent. </strong>");
-                  $('#success > .alert-success')
-                      .append('</div>');
-                  //clear all fields
-                  $('#contact-form').trigger("reset");
-              },
-              error: function () {
-                  // Fail message
-                  $('#success').html("<div class='alert alert-danger'>");
-                  $('#success > .alert-danger').html("<button type='button' class='close-error-message-button' data-dismiss='alert' aria-hidden='true'>&times;")
-                      .append("</button>");
-                  $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
-                  $('#success > .alert-danger').append('</div>');
-                  //clear all fields
-                  // $('#contactForm').trigger("reset");
-              },
-              complete: function () {
-                  setTimeout(function () {
-                      $this.prop("disabled", false); // Re-enable submit button when AJAX call is complete
-                  }, 1000);
-              }
-          });
+          // Use native form submission instead of AJAX so hosting (e.g., Netlify) receives the POST.
+          // Re-enable button and perform a normal submit.
+          setTimeout(function () {
+            $this.prop("disabled", false);
+            // Trigger native submission
+            form.off('submit');
+            form[0].submit();
+          }, 50);
       },
       filter: function () {
           return $(this).is(":visible");
