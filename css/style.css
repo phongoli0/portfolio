@@ -2497,24 +2497,47 @@ img.svg{
 		height: auto;
 		object-fit: cover;
 		border-radius: 6px;
-		margin: 0 0 22px 0;
+		margin: 0 0 30px 0;
 	}
 
-	/* reduce title spacing on mobile to fit theme/pattern */
+	/* make container padding consistent on small screens so content aligns
+	   (adjusts left/right gutter to match mobile visual rhythm) */
+	.container{
+		padding-left: 20px;
+		padding-right: 20px;
+		box-sizing: border-box;
+	}
+
+	/* remove extra paddings on inner elements so they align with .container */
+	.arlo_tm_title_holder,
+	.arlo_tm_about_wrap .definition,
+	.arlo_tm_about_wrap .buttons_wrap,
+	.arlo_tm_contact_wrap_all .leftbox,
+	.arlo_tm_contact_wrap_all .rightbox{
+		padding-left: 0;
+		padding-right: 0;
+		box-sizing: border-box;
+	}
+
+	/* reduce title spacing on mobile to fit theme/pattern; use margin so spacing is external */
 	.arlo_tm_title_holder{
-		padding-bottom: 30px; /* was 100px on desktop */
+		margin-bottom: 30px; /* was 100px on desktop */
 	}
 
 	/* reduce contact title spacing on mobile as well */
 	.arlo_tm_title_holder.contact{
-		padding-bottom: 30px; /* was 93px on desktop */
+		margin-bottom: 30px; /* was 93px on desktop */
 	}
 
 	/* reduce about wrapper spacing on mobile to tighten layout */
 	.arlo_tm_about_wrap{
 		padding-bottom: 20px; /* was 60px on desktop */
 	}
-	
+
+	/* ensure definition (about paragraph block) has consistent bottom spacing */
+	.arlo_tm_about_wrap .definition{
+		margin-bottom: 30px;
+	}
 }
 
 /* Slightly tighter margins on very small screens */
