@@ -2490,11 +2490,14 @@ img.svg{
 	/* mobile avatar shown above intro text: centered and larger */
 	.mobile-profile-avatar{
 		display: block;
-		width: 180px;
-		max-width: 60%;
+		/* fill available width on mobile while keeping horizontal margins */
+		box-sizing: border-box;
+		width: calc(100% - 40px); /* respects 20px side margins */
+		max-width: 480px; /* prevent excessive stretching on larger small screens */
 		height: auto;
+		object-fit: cover;
 		border-radius: 6px;
-		margin: 0 auto 22px auto;
+		margin: 0 20px 22px 20px;
 	}
 
 	/* reduce title spacing on mobile to fit theme/pattern */
@@ -2510,6 +2513,14 @@ img.svg{
 	/* reduce about wrapper spacing on mobile to tighten layout */
 	.arlo_tm_about_wrap{
 		padding-bottom: 20px; /* was 60px on desktop */
+	}
+}
+
+/* Slightly tighter margins on very small screens */
+@media (max-width: 420px) {
+	.mobile-profile-avatar{
+		width: calc(100% - 32px);
+		margin: 0 16px 18px 16px;
 	}
 }
 @media (max-width: 768px) {
