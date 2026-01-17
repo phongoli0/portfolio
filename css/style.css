@@ -2519,9 +2519,10 @@ img.svg{
 		box-sizing: border-box;
 	}
 
-	/* reduce title spacing on mobile to fit theme/pattern; use margin so spacing is external */
+	/* reduce title spacing on mobile to fit theme/pattern; keep as padding so it
+	   remains internal spacing on the title block (matches other sections) */
 	.arlo_tm_title_holder{
-		margin-bottom: 30px; /* was 100px on desktop */
+		padding-bottom: 30px; /* was 100px on desktop */
 	}
 
 	/* reduce contact title spacing on mobile as well */
