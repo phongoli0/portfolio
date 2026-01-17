@@ -2490,14 +2490,14 @@ img.svg{
 	/* mobile avatar shown above intro text: centered and larger */
 	.mobile-profile-avatar{
 		display: block;
-		/* fill available width on mobile while keeping horizontal margins */
+		/* fill parent's content width so it lines up with .container padding */
 		box-sizing: border-box;
-		width: calc(100% - 40px); /* respects 20px side margins */
-		max-width: 480px; /* prevent excessive stretching on larger small screens */
+		width: 100%;
+		max-width: none;
 		height: auto;
 		object-fit: cover;
 		border-radius: 6px;
-		margin: 0 20px 22px 20px;
+		margin: 0 0 22px 0;
 	}
 
 	/* reduce title spacing on mobile to fit theme/pattern */
@@ -2519,8 +2519,9 @@ img.svg{
 /* Slightly tighter margins on very small screens */
 @media (max-width: 420px) {
 	.mobile-profile-avatar{
-		width: calc(100% - 32px);
-		margin: 0 16px 18px 16px;
+		/* remain full-width but ensure small bottom spacing */
+		width: 100%;
+		margin: 0 0 18px 0;
 	}
 }
 @media (max-width: 768px) {
