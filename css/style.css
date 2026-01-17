@@ -725,7 +725,7 @@ img.svg{
 	font-size: 15px;
 	font-weight: 600;
 }
-.arlo_tm_about_wrap .definition{margin-bottom: 15px;}
+.arlo_tm_about_wrap .definition{margin-bottom: 30px;}
 .arlo_tm_about_wrap .definition p{color: #333;}
 .arlo_tm_about_wrap .definition p strong{color: #E3872D;}
 
@@ -2521,7 +2521,7 @@ img.svg{
 	.mobile-profile-avatar{
 		/* remain full-width but ensure small bottom spacing */
 		width: 100%;
-		margin: 0 0 18px 0;
+		margin: 0 0 30px 0;
 	}
 }
 @media (max-width: 768px) {
