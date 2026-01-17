@@ -902,6 +902,23 @@ img.svg{
 	}
 }
 
+/* Mobile: make icons lay out as two-per-row with consistent horizontal gutters */
+@media (max-width: 600px) {
+	.icon-container-row {
+		gap: 20px;               /* increase horizontal gap */
+		justify-content: space-between;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	/* force two items per row while accounting for gap */
+	.icon-container {
+		width: auto;
+		flex: 0 0 calc(50% - 10px);
+		box-sizing: border-box;
+	}
+}
+
 .arlo_tm_skills_wrap .leftbox{
 	width: 35%;
 	height: auto;
