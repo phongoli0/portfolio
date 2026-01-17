@@ -2500,6 +2500,25 @@ img.svg{
 		margin: 0 0 22px 0;
 	}
 
+	/* make container padding consistent on small screens so content aligns
+	   (adjusts left/right gutter to match mobile visual rhythm) */
+	.container{
+		padding-left: 20px;
+		padding-right: 20px;
+		box-sizing: border-box;
+	}
+
+	/* remove extra paddings on inner elements so they align with .container */
+	.arlo_tm_title_holder,
+	.arlo_tm_about_wrap .definition,
+	.arlo_tm_about_wrap .buttons_wrap,
+	.arlo_tm_contact_wrap_all .leftbox,
+	.arlo_tm_contact_wrap_all .rightbox{
+		padding-left: 0;
+		padding-right: 0;
+		box-sizing: border-box;
+	}
+
 	/* reduce title spacing on mobile to fit theme/pattern */
 	.arlo_tm_title_holder{
 		padding-bottom: 30px; /* was 100px on desktop */
