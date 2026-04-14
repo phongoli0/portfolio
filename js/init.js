@@ -48,7 +48,11 @@ jQuery(document).ready(function(){
 		arlo_tm_miniboxes();
 		arlo_tm_isotope();
 		arlo_tm_responsive();
-		
+		// Debounced reinitialization to prevent multiple calls during resize
+		clearTimeout(window.arlo_tm_parallax_resize_timeout);
+		window.arlo_tm_parallax_resize_timeout = setTimeout(function() {
+			arlo_tm_about_animation();
+		}, 250);
 	});
 	
 	jQuery(window).load('body', function(){
@@ -742,15 +746,40 @@ function arlo_tm_data_images(){
 // -------------    PARALLAX ANIMATION    --------------
 // -----------------------------------------------------
 
+	var arlo_tm_parallax_instance = null;
+	
 	function arlo_tm_about_animation(){
 		
 		"use strict";
 		
-		if ($('.parallax').length > 0) { 
-		  var scene = $('.parallax').get(0);
-		  var parallax = new Parallax(scene, { 
-			relativeInput: true,
-			onReady: function() { console.log('ready!');
-		  } });
+		// Clean up previous instance if it exists
+		if (arlo_tm_parallax_instance) {
+			try {
+				arlo_tm_parallax_instance.disable();
+			} catch (e) {
+				console.warn('Could not disable previous parallax instance:', e);
+			}
+			arlo_tm_parallax_instance = null;
 		}
+		
+		if (jQuery('.parallax').length > 0) {
+		  var scene = jQuery('.parallax').get(0);
+		  
+		  // Check if element is visible (not display: none)
+		  if (jQuery(scene).is(':visible')) {
+			  try {
+			 arlo_tm_parallax_instance = new Parallax(scene, {
+			   relativeInput: true
+			 });
+			 // Successfully created - no console log needed
+			  } catch (error) {
+			 // Only log serious errors, ignore minor warnings
+			 if (error.message && !error.message.includes('Calibration') && !error.message.includes('orientation')) {
+			   console.warn('Parallax initialization note:', error.message);
+			 }
+			  }
+		  } else {
+			  console.log('Parallax element is not visible, skipping initialization');
+		  }
+		} // No console warning needed if element not found
 	}

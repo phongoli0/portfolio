@@ -14,13 +14,13 @@
 	07) ARLO TESTIMONIALS
 	08) ARLO NEWS
 	09) ARLO CONTACT
-	09) ARLO CONTACT
 	10) ARLO TO TOP
 	11) ARLO PARTICLE HOMEPAGE
 	12) ARLO RIPPLE HOMEPAGE
 	13) ARLO PORTFOLIO SINGLE
 	14) ARLO MOBILE HEADER
-    15) ARLO MEDIA QUERIES (FOR SMALL DEVICES)
+	15) ARLO MEDIA QUERIES (FOR SMALL DEVICES)
+	16) ARLO EXPERIENCE TIMELINE
 
 
 /*---------------------------------------------------*/
@@ -530,7 +530,10 @@ img.svg{
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
 			box-sizing: border-box; /* Opera/IE 8+ */
 }
-.arlo_tm_title_holder.contact{padding-bottom: 93px;}
+.arlo_tm_title_holder.contact{
+	padding-bottom: 93px;
+	background-color: #fff;
+}
 .arlo_tm_title_holder:before{
 	position: absolute;
 	content: "";
@@ -565,51 +568,6 @@ img.svg{
 			box-sizing: border-box; /* Opera/IE 8+ */
 }
 
-.arlo_tm_main_title_holder{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	text-align: left;
-	margin-bottom: 120px;
-	
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
-			box-sizing: border-box; /* Opera/IE 8+ */
-}
-.arlo_tm_main_title_holder.about{
-	text-align: left;
-	margin-bottom: 0px;
-	padding: 0px;
-}
-.arlo_tm_main_title_holder h3{
-	font-weight: 900;
-	font-family: "Montserrat";
-	color: #041230;
-	font-size: 30px;
-	line-height: 1;
-}
-.arlo_tm_main_title_holder h3 span{position: relative;}
-.arlo_tm_main_title_holder h3 span:before{
-    position: absolute;
-	content: "";
-	width: 50px;
-	height: 4px;
-	background-color: #041230;
-	letter-spacing: 0px;
-	bottom: -10px;
-}
-.arlo_tm_about_wrapper_all{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	background-color: #fff;
-	
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
-			box-sizing: border-box; /* Opera/IE 8+ */
-}
 .arlo_tm_main_title_holder{
 	width: 100%;
 	height: auto;
@@ -681,10 +639,16 @@ img.svg{
 			box-sizing: border-box; /* Opera/IE 8+ */
 	
 }
-.arlo_tm_about_wrap .leftbox .about_image_wrap{position: relative;}
+.arlo_tm_about_wrap .leftbox .about_image_wrap{
+	position: relative;
+}
 .arlo_tm_about_wrap .leftbox .about_image_wrap .image{
 	position: absolute;
 	z-index: 2;
+}
+.arlo_tm_about_wrap .leftbox .about_image_wrap .border{
+	position: absolute;
+	z-index: 1;
 }
 .arlo_tm_about_wrap .leftbox .about_image_wrap .image .inner{
 	position: absolute;
@@ -833,7 +797,7 @@ img.svg{
 .arlo_tm_skills_wrap{
 	background-color: #f6f7fd;
 	padding: 90px 0px;
-	margin-bottom: 100px;
+	margin-bottom: 0px;
 }
 .arlo_tm_skills_wrap{
 	display: flex;
@@ -1067,12 +1031,13 @@ img.svg{
 	clear: both;
 	float: left;
 	background-color: #fff;
+	padding: 90px 0px;
 	margin-bottom: 70px;
 	text-align: left;
 	
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
-			box-sizing: border-box; /* Opera/IE 8+ */ 
+			box-sizing: border-box; /* Opera/IE 8+ */
 }
 .arlo_tm_services_wrap .arlo_tm_title_holder_wrap{margin-bottom: 93px;}
 .arlo_tm_services_wrap .list_wrap{
@@ -1086,18 +1051,19 @@ img.svg{
 			box-sizing: border-box; /* Opera/IE 8+ */ 
 }
 .arlo_tm_services_wrap .list_wrap ul{
-	margin: 0px 0px 0px -30px;
+	margin: 0px;
 	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
 }
 .arlo_tm_services_wrap .list_wrap ul li{
-	margin: 0px 0px 30px 0px;
-	float: left;
-	width: 33.3333%;
-	padding-left: 30px;
+	margin: 0px;
+	flex: 0 0 calc(33.3333% - 20px); /* Account for gap: (30px * 2 gaps) / 3 items = 20px reduction per item */
 	
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
-			box-sizing: border-box; /* Opera/IE 8+ */ 
+			box-sizing: border-box; /* Opera/IE 8+ */
 }
 .arlo_tm_services_wrap .list_wrap ul li .inner{
 	width: 100%;
@@ -1850,6 +1816,7 @@ img.svg{
 	clear: both;
 	float: left;
 	background-color: #fff;
+	padding: 0px 0px 90px 0px;
 	
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
@@ -2068,7 +2035,7 @@ img.svg{
 	background-color: white;
 }
 /*---------------------------------------------------*/
-/*	10) EDREA TO TOP
+/*	10) ARLO TO TOP
 /*---------------------------------------------------*/
 
 .arlo_tm_totop{
@@ -2335,6 +2302,13 @@ img.svg{
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
 			box-sizing: border-box; /* Opera/IE 8+ */
 }
+
+@media (max-width: 480px) {
+	.arlo_tm_mobile_header_wrap .main_wrap{
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
 .arlo_tm_trigger{width: auto;}
 .arlo_tm_trigger .hamburger{
     padding: 15px 15px;
@@ -2470,7 +2444,7 @@ img.svg{
 }
 
 /*---------------------------------------------------*/
-/*	15) ARLO MEDIA QUERIES (FOR SMALL DEVIVES)
+/*	15) ARLO MEDIA QUERIES (FOR SMALL DEVICES)
 /*---------------------------------------------------*/
 
 @media (max-width: 1400px) {
@@ -2480,7 +2454,7 @@ img.svg{
 /* mobile-only avatar: hidden by default on desktop */
 .mobile-profile-avatar{ display: none; }
 @media (max-width: 1200px) {
-	.arlo_tm_services_wrap .list_wrap ul li{width: 50%;}
+	.arlo_tm_services_wrap .list_wrap ul li{flex: 0 0 calc(50% - 15px);} /* 2 columns with 30px gap: (30px * 1 gap) / 2 items = 15px reduction per item */
 	#arlo_tm_popup_blog .close{right: 0px;}
 	.arlo_tm_list_wrap > ul.total > li{width: 50%;}
 	.arlo_tm_contact_wrap_all .leftbox{width: 100%;padding-right: 0px;margin-bottom: 19px;}
@@ -2522,6 +2496,7 @@ img.svg{
 	.container{
 		padding-left: 20px;
 		padding-right: 20px;
+		max-width: 100%;
 		box-sizing: border-box;
 	}
 
@@ -2560,6 +2535,7 @@ img.svg{
 
 /* Slightly tighter margins on very small screens */
 @media (max-width: 420px) {
+	.arlo_tm_title_holder h3{font-size: 30px;} /* Further reduced for very small screens */
 	.mobile-profile-avatar{
 		/* remain full-width but ensure small bottom spacing */
 		width: 100%;
@@ -2572,7 +2548,7 @@ img.svg{
 	.arlo_tm_title_holder h3{font-size: 45px;}
 	.arlo_tm_title_holder:before{top: -2px;}
 	.arlo_tm_services_wrap .list_wrap ul{margin: 0px;}
-	.arlo_tm_services_wrap .list_wrap ul li{width: 100%;padding-left: 0px;}
+	.arlo_tm_services_wrap .list_wrap ul li{flex: 0 0 100%;padding-left: 0px;} /* 1 column full width */
 	.arlo_tm_counter_list li{width: 50%;}
 	.arlo_tm_counter_list li .inner{padding: 45px 15px 48px 15px;}
 	.arlo_tm_portfolio_list > li{width: 50%;}
@@ -2586,6 +2562,7 @@ img.svg{
 @media (max-width: 480px) {
 	.arlo_tm_hero_header_wrap .name_holder h3{font-size: 30px;}
 	.arlo_tm_hero_header_wrap .text_typing p{font-size: 18px;}
+	.arlo_tm_title_holder h3{font-size: 35px;} /* Reduced from 45px for better fit on small screens */
 	.arlo_tm_title_holder:before{display: none;}
 	.arlo_tm_title_holder h3{padding-left: 0px;}
 	.arlo_tm_title_holder span{padding-left: 0px;}
@@ -2594,7 +2571,30 @@ img.svg{
 	.arlo_tm_portfolio_list{margin: 0px;}
 	.arlo_tm_portfolio_list > li{width: 100%;padding-left: 0px;}
 	.arlo_tm_counter_wrap{padding: 94px 0px 48px 0px;}
-}	
+	
+	/* Timeline fixes for very small screens */
+	.timeline{
+		padding: 0 5px;
+	}
+	
+	.timeline:before{
+		left: 15px;
+	}
+	
+	.timeline-date{
+		padding-left: 30px;
+		width: auto;
+	}
+	
+	.timeline-content{
+		margin-left: 30px;
+		padding: 15px;
+	}
+	
+	.timeline-item:before{
+		left: 15px;
+	}
+}
 
 
 .portfolio-thumbnail{
@@ -2610,3 +2610,189 @@ img.svg{
 	color: blue;
 }
 
+/*---------------------------------------------------*/
+/*	16) ARLO EXPERIENCE TIMELINE
+/*---------------------------------------------------*/
+
+.arlo_tm_experience_wrap{
+	width: 100%;
+	height: auto;
+	clear: both;
+	float: left;
+	background-color: #f6f7fd;
+	padding: 90px 0px;
+	margin-bottom: 70px;
+	text-align: left;
+	
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+}
+
+.timeline_wrap{
+	width: 100%;
+	height: auto;
+	clear: both;
+	float: left;
+	position: relative;
+	padding: 40px 0;
+}
+
+.timeline{
+	position: relative;
+	max-width: 800px;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+.timeline:before{
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: #E3872D;
+	margin-left: -1px;
+}
+
+.timeline-item{
+	position: relative;
+	margin-bottom: 60px;
+	clear: both;
+}
+
+.timeline-item:last-child{
+	margin-bottom: 0;
+}
+
+.timeline-date{
+	position: absolute;
+	width: 180px;
+	text-align: right;
+	left: 0;
+	top: 0;
+	font-family: "Montserrat";
+	font-size: 18px;
+	font-weight: 600;
+	color: #E3872D;
+	padding-right: 30px;
+}
+
+.timeline-content{
+	margin-left: 220px;
+	padding: 25px 30px;
+	background: #fff;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+	border-radius: 8px;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.timeline-content:before{
+	content: '';
+	position: absolute;
+	left: -10px;
+	top: 30px;
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid #fff;
+}
+
+.timeline-content h4{
+	font-family: "Montserrat";
+	font-size: 22px;
+	font-weight: 700;
+	color: #000;
+	margin: 0 0 5px 0;
+	line-height: 1.2;
+}
+
+.timeline-content h5{
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: 600;
+	color: #E3872D;
+	margin: 0 0 15px 0;
+	font-style: italic;
+}
+
+.timeline-content p{
+	font-family: "Open Sans";
+	font-size: 15px;
+	line-height: 1.7;
+	color: #666;
+	margin: 0 0 15px 0;
+}
+
+.timeline-tags{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.timeline-tags li{
+	background: #f5f5f5;
+	padding: 5px 12px;
+	border-radius: 20px;
+	font-family: "Open Sans";
+	font-size: 13px;
+	color: #555;
+	font-weight: 500;
+}
+
+/* Timeline dots */
+.timeline-item:before{
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 0;
+	width: 16px;
+	height: 16px;
+	background: #E3872D;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	margin-left: -8px;
+	box-shadow: 0 0 0 3px rgba(227, 135, 45, 0.2);
+	z-index: 2;
+}
+
+/* Responsive timeline */
+@media (max-width: 768px) {
+	.timeline{
+		max-width: 100%;
+		padding: 0 10px;
+	}
+	
+	.timeline:before{
+		left: 20px;
+	}
+	
+	.timeline-date{
+		position: relative;
+		text-align: left;
+		padding-left: 40px;
+		padding-right: 0;
+		margin-bottom: 10px;
+	}
+	
+	.timeline-content{
+		margin-left: 40px;
+		padding: 20px;
+	}
+	
+	.timeline-content:before{
+		left: -10px;
+		border-right: 10px solid #fff;
+		border-left: none;
+	}
+	
+	.timeline-item:before{
+		left: 20px;
+	}
+}

@@ -1,3 +1,11 @@
+/*
+ contact_me.js
+ - Client-side validation and native-submit flow for the contact form.
+ - Compatible with static hosts and Netlify Forms. If deploying to Netlify,
+   ensure your `<form>` has `data-netlify="true"` and a `name` attribute.
+   This script will add the required hidden `form-name` input before submission.
+*/
+
 $(function () {
   $("#contact-form input,#contact-form textarea").jqBootstrapValidation({
       preventSubmit: true,
@@ -20,9 +28,20 @@ $(function () {
               firstName = name.split(' ').slice(0, -1).join(' ');
           }
           // Use native form submission instead of AJAX so hosting (e.g., Netlify) receives the POST.
-          // Re-enable button and perform a normal submit.
+          // If Netlify Forms is used, ensure the hidden `form-name` input exists.
           setTimeout(function () {
             $this.prop("disabled", false);
+            // If form opts into Netlify, add the required hidden input
+            try {
+              if (form.attr('data-netlify') === 'true') {
+                var formName = form.attr('name') || 'contact';
+                if (form.find('input[name="form-name"]').length === 0) {
+                  form.prepend('<input type="hidden" name="form-name" value="' + formName + '">');
+                }
+              }
+            } catch (e) {
+              // noop
+            }
             // Trigger native submission
             form.off('submit');
             form[0].submit();
