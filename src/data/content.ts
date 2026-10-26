@@ -35,7 +35,7 @@ export const about = {
     'I design and build the systems that carry a brand’s relationship with its customers — CRM engineering, frontend development and data architecture, on Braze, Salesforce Marketing Cloud, Segment and Snowflake. The work I care about is translating a tangle of technical requirements into something with a number attached to it.',
     'Right now I’m at Etsy as a Retention and Engagement Marketing Developer. I architect multi-touch lifecycle journeys and experiment designs in Braze Canvas, engineer dynamic multi-channel templates in HTML, CSS and Liquid, and keep the pipelines between Braze, our warehouses and internal services honest.',
     'Before that I spent two years as a Solutions Architect at AbbVie, where the delivered work cut the CRM team’s weekly manual workload by 20%, lifted loyalty redemption above 30% through Braze Connected Content and REST APIs, and pioneered in-app push messaging for a 10% gain in offer redemption — a new channel that took pressure off email and SMS. Earlier I ran email at scale: 25 million sends at 98% deliverability.',
-    'I started with a psychology degree and a curiosity about why people do what they do, then moved into engineering. That background still shapes how I work — I’m most useful in the conversation where business and code meet, whether that’s a data strategy for an eight-million-persona database, an SFMC-to-Braze migration, or a Python RAG pipeline with guardrails. I hold both Braze certifications, Digital Strategist and Marketer.',
+    'I started with a psychology degree and a curiosity about why people do what they do, then moved into engineering. That background still shapes how I work — I’m most useful in the conversation where business and code meet, whether that’s a data strategy for an eight-million-persona database, leading a Marketo-to-Braze migration, or a Python RAG pipeline with guardrails. I hold both Braze certifications, Digital Strategist and Marketer.',
   ],
   actions: [
     { label: 'Download Résumé', href: '/Phong-Truong-Resume.pdf', variant: 'primary' as const, external: true },
@@ -110,6 +110,7 @@ export type Project = {
   year: string;
   body: string;
   stack: string[];
+  flowTitle: string;
   steps: string[];
   links: ProjectLink[];
 };
@@ -117,13 +118,29 @@ export type Project = {
 export const projects = {
   eyebrow: 'Selected work',
   title: 'Things I build',
-  subtitle: 'An agent I designed and shipped end to end.',
+  subtitle: 'Client engagements and side projects I designed and shipped end to end.',
   items: [
+    {
+      title: 'Marketo to Braze Migration',
+      year: '2025 — 2026',
+      body: 'A mid-size enterprise moving its lifecycle marketing off Marketo and onto Braze. I led the engagement as the freelance solutions architect — owning the technical plan, the data model, the migration of journeys and campaigns, and the cutover. The hard part was never the API calls; it was deciding what the old platform’s accumulated behaviour was actually supposed to do, and rebuilding only that.',
+      stack: ['Braze', 'Marketo', 'API Integration', 'Data Migration'],
+      flowTitle: 'Engagement phases',
+      steps: [
+        'Current-state audit and asset inventory',
+        'Data model and audience mapping',
+        'Journey and campaign rebuild',
+        'Integration, QA and parallel run',
+        'Cutover and stabilisation',
+      ],
+      links: [],
+    },
     {
       title: 'Social Media Agent',
       year: '2026',
       body: 'A Discord-first agent that watches for image uploads and answers with three caption options — sentimental, witty and short — written for a Vietnamese lifestyle persona. Gemini 2.5 Flash does the writing; the surrounding system handles the parts that make it usable: attachment detection, image preprocessing, graceful degradation when the model is slow, and logging that survives production traffic.',
       stack: ['Python', 'Gemini 2.5 Flash', 'Pillow', 'Discord API'],
+      flowTitle: 'How it runs',
       steps: [
         'Image uploaded to any channel',
         'Bot detects the attachment',
@@ -154,8 +171,8 @@ export const experience = {
       period: '2025 — 2026',
       title: 'Solutions Architect, MarTech',
       company: 'Independent · Orange County, CA (Remote)',
-      body: 'End-to-end MarTech architecture and technical consulting for mid-to-enterprise clients: CRM orchestration, cross-platform migrations (SFMC to Braze), and lifecycle automation. Architected data pipelines connecting customer data platforms and warehouses to downstream messaging channels, cutting synchronization latency and removing manual operational overhead.',
-      tags: ['MarTech Architecture', 'CRM Orchestration', 'SFMC → Braze', 'Data Pipelines'],
+      body: 'End-to-end MarTech architecture and technical consulting for mid-to-enterprise clients: CRM orchestration, cross-platform migrations, and lifecycle automation. Led a Marketo-to-Braze migration for a mid-size enterprise as the engagement’s solutions architect. Architected data pipelines connecting customer data platforms and warehouses to downstream messaging channels, cutting synchronization latency and removing manual operational overhead.',
+      tags: ['MarTech Architecture', 'CRM Orchestration', 'Marketo → Braze', 'Data Pipelines'],
     },
     {
       period: '2023 — 2025',
