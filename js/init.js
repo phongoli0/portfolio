@@ -55,11 +55,12 @@ jQuery(document).ready(function(){
 		}, 250);
 	});
 	
-	jQuery(window).load('body', function(){
-		setTimeout(function(){
-        jQuery('.arlo_tm_preloader').addClass('loaded');
-    }, 1000);
-	});
+	// The preloader is a splash, not a real loader. It used to wait on
+	// .load('body', fn), which issued an AJAX request to a URL named "body"
+	// (404) and only hid by accident. Hide it right after the DOM is ready.
+	setTimeout(function(){
+		jQuery('.arlo_tm_preloader').addClass('loaded');
+	}, 1000);
 	
 });
 
