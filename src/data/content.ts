@@ -125,9 +125,10 @@ export const projects = {
     {
       title: 'Marketo to Braze Migration',
       year: '2025 — 2026',
-      body: 'A mid-size enterprise moving its lifecycle marketing off Marketo and onto Braze. I led the engagement as the freelance solutions architect — owning the technical plan, the data model, the migration itself, and the cutover. The hard part was never the API calls; it was deciding what the old platform’s accumulated behaviour was actually supposed to do, and rebuilding only that.',
+      body: 'A mid-size enterprise moving its lifecycle marketing off Marketo and onto Braze. I led the engagement as the freelance solutions architect — owning the technical plan, the data model, the migration itself, and the cutover. Over two million profiles, 25+ playbooks and 300+ emails crossed platforms. The hard part was never the API calls; it was deciding what the old platform’s accumulated behaviour was actually supposed to do, and rebuilding only that.',
       stack: ['Braze', 'Marketo', 'API Integration', 'Data Migration'],
       stats: [
+        { value: '2M+', label: 'profiles migrated' },
         { value: '25+', label: 'playbooks rebuilt' },
         { value: '300+', label: 'emails migrated' },
       ],
@@ -135,7 +136,7 @@ export const projects = {
       steps: [
         'Current-state audit and asset inventory',
         'Data model and audience mapping',
-        'Rebuild 25+ playbooks and 300+ emails',
+        'Migrate 2M+ profiles, 25+ playbooks and 300+ emails',
         'Integration, QA and parallel run',
         'Cutover and stabilisation',
       ],
