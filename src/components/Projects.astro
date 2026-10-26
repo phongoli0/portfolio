@@ -1,0 +1,202 @@
+---
+import { projects } from '../data/content';
+---
+
+<section class="section work" id="work">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">{projects.eyebrow}</p>
+      <h2>{projects.title}</h2>
+      <p>{projects.subtitle}</p>
+    </div>
+
+    <ul class="work__list">
+      {
+        projects.items.map((project) => (
+          <li class="work__item" data-reveal>
+            <div class="work__intro">
+              <p class="work__year">{project.year}</p>
+              <h3>{project.title}</h3>
+              <p class="work__text">{project.body}</p>
+
+              <ul class="work__stack">
+                {project.stack.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+
+              {project.links.length > 0 && (
+                <p class="work__links">
+                  {project.links.map((link) => (
+                    <a href={link.href} target="_blank" rel="noopener">
+                      {link.label}
+                      <svg viewBox="0 0 16 16" aria-hidden="true" width="12" height="12">
+                        <path
+                          d="M4 12 12 4M6 4h6v6"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  ))}
+                </p>
+              )}
+            </div>
+
+            <div class="work__flow">
+              <p class="work__flow-label">How it runs</p>
+              <ol>
+                {project.steps.map((step, i) => (
+                  <li>
+                    <span class="work__step-index" aria-hidden="true">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .work {
+    background: var(--canvas);
+  }
+
+  .work__list {
+    display: grid;
+    gap: clamp(32px, 5vw, 56px);
+  }
+
+  .work__item {
+    display: grid;
+    gap: clamp(26px, 4vw, 44px);
+    padding: clamp(26px, 3.4vw, 40px);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-card);
+    background: linear-gradient(180deg, rgb(255 255 255 / 3%), transparent 55%);
+  }
+
+  .work__year {
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .work__item h3 {
+    margin-top: 6px;
+    font-size: var(--step-2);
+    letter-spacing: -0.025em;
+  }
+
+  .work__text {
+    margin-top: 14px;
+    max-width: 58ch;
+    color: var(--text-2);
+  }
+
+  .work__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .work__stack li {
+    padding: 4px 11px;
+    border-radius: var(--radius-pill);
+    background: rgb(227 135 45 / 12%);
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .work__links {
+    display: flex;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .work__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 44px;
+    font-size: var(--step--1);
+    font-weight: 500;
+    transition: color var(--dur-ui) var(--ease-out);
+  }
+
+  .work__links svg {
+    transition: transform var(--dur-ui) var(--ease-out);
+  }
+
+  .work__flow {
+    padding: 22px 24px;
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    background: var(--elevated);
+  }
+
+  .work__flow-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  .work__flow ol {
+    display: grid;
+    margin-top: 14px;
+  }
+
+  .work__flow li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+    padding-block: 11px;
+    border-top: 1px solid var(--hairline);
+    font-size: var(--step--1);
+    color: var(--text-2);
+  }
+
+  .work__flow li:first-child {
+    border-top: 0;
+  }
+
+  .work__step-index {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0;
+    color: var(--accent);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .work__links a:hover {
+      color: var(--accent);
+    }
+
+    .work__links a:hover svg {
+      transform: translate(1px, -1px);
+    }
+  }
+
+  @media (min-width: 860px) {
+    .work__item {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+</style>

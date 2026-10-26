@@ -13,6 +13,7 @@ export const nav = [
   { label: 'Skills', href: '#skills' },
   { label: 'Services', href: '#services' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Work', href: '#work' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -101,6 +102,38 @@ export const services = {
       body: 'Developing custom Python-based AI workflows, Retrieval-Augmented Generation (RAG) pipelines, and LLM orchestration with HITL guardrails to automate complex marketing and operational workflows.',
     },
   ] as Service[],
+};
+
+export type ProjectLink = { label: string; href: string };
+export type Project = {
+  title: string;
+  year: string;
+  body: string;
+  stack: string[];
+  steps: string[];
+  links: ProjectLink[];
+};
+
+export const projects = {
+  eyebrow: 'Selected work',
+  title: 'Things I build',
+  subtitle: 'An agent I designed and shipped end to end.',
+  items: [
+    {
+      title: 'Social Media Agent',
+      year: '2026',
+      body: 'A Discord-first agent that watches for image uploads and answers with three caption options — sentimental, witty and short — written for a Vietnamese lifestyle persona. Gemini 2.5 Flash does the writing; the surrounding system handles the parts that make it usable: attachment detection, image preprocessing, graceful degradation when the model is slow, and logging that survives production traffic.',
+      stack: ['Python', 'Gemini 2.5 Flash', 'Pillow', 'Discord API'],
+      steps: [
+        'Image uploaded to any channel',
+        'Bot detects the attachment',
+        'Download and preprocess with Pillow',
+        'Gemini 2.5 Flash writes three styles',
+        'Formatted reply in-channel',
+      ],
+      links: [{ label: 'GitHub', href: 'https://github.com/phongoli0/social-media-agent' }],
+    },
+  ] as Project[],
 };
 
 export type Role = { period: string; title: string; company: string; body: string; tags: string[] };
