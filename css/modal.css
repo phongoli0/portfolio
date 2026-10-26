@@ -12,6 +12,20 @@
     width: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity var(--dur-modal) ease-out,
+                display var(--dur-modal) allow-discrete;
+  }
+
+  /* modal.js toggles style.display, so the open state is matched on the inline style */
+  .modal[style*="display: block"]{
+    opacity: 1;
+  }
+
+  @starting-style{
+    .modal[style*="display: block"]{
+      opacity: 0;
+    }
   }
   
   .modal-content{
@@ -21,8 +35,23 @@
     border-radius: 2px;
     max-width: 525px;
     margin: 1.75rem auto;
-    animation-name: modalOpen;
-    animation-duration: 0.5s;
+    transform-origin: center;
+    transform: scale(.96);
+    opacity: 0;
+    transition: transform var(--dur-modal) var(--ease-out),
+                opacity var(--dur-modal) ease-out;
+  }
+
+  .modal[style*="display: block"] .modal-content{
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  @starting-style{
+    .modal[style*="display: block"] .modal-content{
+      transform: scale(.96);
+      opacity: 0;
+    }
   }
   
   .close-button{
@@ -32,17 +61,17 @@
     bottom: 35px;
     left: 10px;
     position: relative;
+    transition: color 150ms ease, transform var(--dur-press) var(--ease-out);
+  }
+
+  .close-button:active{
+    transform: scale(.92);
   }
   
   .close-button:hover, .close-button:focus{
     cursor: pointer;
     color: red;
     text-decoration: none;
-  }
-
-  @keyframes modalOpen{
-      from {opacity: 0}
-      to {opacity: 1}
   }
 
 /* TOFA classes */

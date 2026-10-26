@@ -24,6 +24,33 @@
 
 
 /*---------------------------------------------------*/
+/*	00) MOTION TOKENS
+/*---------------------------------------------------*/
+
+:root{
+	--ease-out: cubic-bezier(.23, 1, .32, 1);
+	--ease-in-out: cubic-bezier(.77, 0, .175, 1);
+	--ease-drawer: cubic-bezier(.32, .72, 0, 1);
+
+	--dur-press: 160ms;
+	--dur-ui: 200ms;
+	--dur-drawer: 300ms;
+	--dur-modal: 220ms;
+}
+
+/* Motion is decoration here, so it can be removed wholesale rather than toned down. */
+@media (prefers-reduced-motion: reduce){
+	*,
+	*::before,
+	*::after{
+		animation: none !important;
+		transition-duration: 1ms !important;
+		transition-delay: 0s !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/*---------------------------------------------------*/
 /*	01) ARLO BASE
 /*---------------------------------------------------*/
 
@@ -100,12 +127,9 @@ img.svg{
   height: 100%;
   width: 100%;
 	
-  -webkit-transition: .2s all ease;
-  -o-transition: .2s all ease;
-  transition: .2s all ease;
-  -webkit-transition-delay: .5s;
-  -o-transition-delay: .5s;
-  transition-delay: .5s; }  
+  transition: opacity var(--dur-ui) ease-out 150ms,
+              visibility 0s linear 350ms;
+}
 .arlo_tm_preloader .spinner_wrap{
 	position: absolute;
 	top: 50%;
@@ -124,10 +148,8 @@ img.svg{
     height: 50%;
     width: 100%;
     background-color: #041230;
-	
-    -webkit-transition: .7s all ease;
-    -o-transition: .7s all ease;
-    transition: .7s all ease;
+    transform-origin: center top;
+    transition: transform 450ms var(--ease-in-out);
 }
 .arlo_tm_preloader:before{
     top: 0;
@@ -136,13 +158,16 @@ img.svg{
 .arlo_tm_preloader:after{
     bottom: 0;
 	left: 0; 
+    transform-origin: center bottom;
 }
 .arlo_tm_preloader.loaded:before, 
-.arlo_tm_preloader.loaded:after{height: 0%;}
+.arlo_tm_preloader.loaded:after{transform: scaleY(0);}
 
 .social_wrap i{
 	font-size: 2rem;
 	color: #fff;
+	display: inline-block;
+	transition: color 150ms ease, transform var(--dur-press) var(--ease-out);
 }
 
 .social_wrap a {
@@ -150,6 +175,7 @@ img.svg{
 }
 
 .social_wrap i:hover{color: #E3872D;}
+.social_wrap a:active i{transform: scale(.92);}
 
 
 /*---------------------------------------------------*/
@@ -165,15 +191,10 @@ img.svg{
 	background-color: #041230;
 	z-index: 100;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
-	
+	transition: transform var(--dur-drawer) var(--ease-drawer);
 }
-.arlo_tm_leftpart_wrap.hide{left: -300px;}
-.arlo_tm_leftpart_wrap.opened{left: -300px;}
+.arlo_tm_leftpart_wrap.hide{transform: translateX(-300px);}
+.arlo_tm_leftpart_wrap.opened{transform: translateX(-300px);}
 .arlo_tm_leftpart_wrap .logo_wrap{
 	background-color: #041230;
 	padding: 50px 20px;
@@ -215,31 +236,24 @@ img.svg{
 	display: inline-block;
 	padding-bottom: 19px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: color 150ms ease;
 }
 .arlo_tm_leftpart_wrap .menu_list_wrap ul li a:before{
 	position: absolute;
 	content: "";
 	height: 2px;
-	width: 0px;
+	width: 35px;
 	background-color: #E3872D;
 	top: 14px;
-	transform: translateY(-50%);
+	transform: translateY(-50%) scaleX(0);
+	transform-origin: left center;
 	left: 100%;
 	margin-left: 10px;
-	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+ 	
+	transition: transform 200ms var(--ease-out);
 }
 .arlo_tm_leftpart_wrap .menu_list_wrap ul li:hover{color: #E3872D;}
-.arlo_tm_leftpart_wrap .menu_list_wrap ul li a:hover:before{width: 35px;}
+.arlo_tm_leftpart_wrap .menu_list_wrap ul li a:hover:before{transform: translateY(-50%) scaleX(1);}
 .arlo_tm_leftpart_wrap .leftpart_bottom{
 	position: absolute;
 	left: 60px;
@@ -270,11 +284,7 @@ img.svg{
 	text-decoration: none;
 	color: #fff;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: color 150ms ease;
 }
 .arlo_tm_leftpart_wrap .leftpart_bottom .social_wrap ul li a:hover{color: #E3872D;}
 .arlo_tm_leftpart_wrap .arlo_tm_resize{
@@ -290,24 +300,16 @@ img.svg{
 	text-decoration: none;
 	z-index: 200;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: transform var(--dur-drawer) var(--ease-drawer);
 }
-.arlo_tm_leftpart_wrap .arlo_tm_resize.opened{right: -30px;}
+.arlo_tm_leftpart_wrap .arlo_tm_resize.opened{transform: translateX(30px);}
 .arlo_tm_leftpart_wrap .arlo_tm_resize i{
 	color: #fff;
 	transform: rotate(0deg);
 	position: absolute;
 	left: 6px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: transform var(--dur-ui) var(--ease-out);
 }
 .arlo_tm_leftpart_wrap .arlo_tm_resize i.opened{transform: rotate(-180deg);}
 .arlo_tm_rightpart{
@@ -316,11 +318,7 @@ img.svg{
 	float: left;
 	padding-left: 300px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: padding-left var(--dur-drawer) var(--ease-drawer);
 	
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
@@ -728,11 +726,7 @@ img.svg{
 	color: #000;
     position: relative;
 	
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    transition: color 150ms ease;
 }
 .arlo_tm_about_wrap .about_short_contact_wrap ul li a:hover{color: #BD0A0D;}
 .arlo_tm_about_wrap .buttons_wrap{
@@ -768,21 +762,24 @@ img.svg{
     border-radius: 3px;
     display: inline-block;
     position: relative;
-    overflow: hidden;;
+    overflow: hidden;
+    transition: transform var(--dur-press) var(--ease-out);
 }
+.arlo_tm_about_wrap .buttons_wrap ul li a:active{transform: scale(.97);}
 .arlo_tm_about_wrap .buttons_wrap ul li a:before{
 	position: absolute;
     content: "";
     top: 0px;
     height: 100%;
     left: -25%;
-    width: 0%;
+    width: 180%;
     background-color: #041230;
-    transform: skew(50deg);
-    transition-duration: .6s;
+    transform: skew(50deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 300ms var(--ease-out);
     z-index: 1;
 }
-.arlo_tm_about_wrap .buttons_wrap ul li a:hover:before{width: 180%;}
+.arlo_tm_about_wrap .buttons_wrap ul li a:hover:before{transform: skew(50deg) scaleX(1);}
 .arlo_tm_skills_wrap,
 .arlo_tm_skills_wrap .inner_wrap{
 	width: 100%;
@@ -1073,19 +1070,18 @@ img.svg{
 	position: relative;
 	box-shadow: 0 0 20px rgba(0,0,0,.1);
 	padding: 40px 40px 33px 40px;
-	top: 0px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: transform var(--dur-ui) var(--ease-out),
+	            box-shadow var(--dur-ui) var(--ease-out);
 	
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
 			box-sizing: border-box; /* Opera/IE 8+ */ 
 }
-.arlo_tm_services_wrap .list_wrap ul li .inner:hover{top: -5px;}
+.arlo_tm_services_wrap .list_wrap ul li .inner:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 6px 24px rgba(0,0,0,.14);
+}
 .arlo_tm_services_wrap .list_wrap ul li .icon{margin-bottom: 21px;}
 .arlo_tm_services_wrap .list_wrap ul li .icon .svg{
 	width: 40px;
@@ -1228,11 +1224,7 @@ img.svg{
 	margin-bottom: 10px;
 	position: relative;
 	
-	-webkit-transition: all .1s ease;
-	   -moz-transition: all .1s ease;
-	    -ms-transition: all .1s ease;
-	     -o-transition: all .1s ease;
-	        transition: all .1s ease;
+	transition: color 150ms ease;
 }
 .arlo_tm_portfolio_filter li a.current{color: #BD0A0D;}
 
@@ -1540,11 +1532,7 @@ img.svg{
 	position: relative;
 	margin-left: 23px;
 	
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    transition: color 150ms ease;
 }
 .arlo_tm_news_wrap .date_wrap p a:hover{color: #E3872D;}
 .arlo_tm_news_wrap .date_wrap p a:after{
@@ -1570,11 +1558,7 @@ img.svg{
 	font-size: 22px;
 	display: block;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: color 150ms ease;
 }
 .arlo_tm_news_wrap .title_holder h3 a:hover{color: #E3872D;}
 .arlo_tm_news_wrap .definition{margin-bottom: 26px;}
@@ -1590,20 +1574,23 @@ img.svg{
     display: inline-block;
     position: relative;
     overflow: hidden;
+    transition: transform var(--dur-press) var(--ease-out);
 }
+.arlo_tm_news_wrap .read_more a:active{transform: scale(.97);}
 .arlo_tm_news_wrap .read_more a:before{
 	position: absolute;
     content: "";
     top: 0px;
     height: 100%;
     left: -25%;
-    width: 0%;
+    width: 170%;
     background-color: #041230;
-    transform: skew(50deg);
-    transition-duration: .6s;
+    transform: skew(50deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 300ms var(--ease-out);
     z-index: 1;
 }
-.arlo_tm_news_wrap .read_more a:hover:before{width: 170%;}
+.arlo_tm_news_wrap .read_more a:hover:before{transform: skew(50deg) scaleX(1);}
 .arlo_tm_news_wrap .read_more a span{
 	position: relative;
 	z-index: 2;
@@ -1624,11 +1611,8 @@ img.svg{
 	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
 			box-sizing: border-box; /* Opera/IE 8+ */
 	
-	-webkit-transition: all .2s ease;
-	   -moz-transition: all .2s ease;
-	    -ms-transition: all .2s ease;
-	     -o-transition: all .2s ease;
-	        transition: all .2s ease;
+	transition: opacity 250ms ease-out,
+	            visibility 0s linear 250ms;
 }
 #arlo_tm_popup_blog.opened{
 	opacity: 1;
@@ -1666,11 +1650,7 @@ img.svg{
     position: relative;
     margin-left: 23px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: color 150ms ease;
 }
 #arlo_tm_popup_blog .date_wrap p a:hover{color: #BD0A0D;}
 #arlo_tm_popup_blog .image_wrap{
@@ -1755,11 +1735,7 @@ img.svg{
     font-family: "Montserrat";
     font-weight: 600;
 	
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    transition: color 150ms ease;
 }
 #arlo_tm_popup_blog .arlo_tm_popup_share_wrap ul li a:hover{color: #BD0A0D;}
 #arlo_tm_popup_blog .close{
@@ -1908,9 +1884,13 @@ img.svg{
 	border-bottom: 1px solid rgba(10,4,37,1);
 	color: #333;
 	padding-left: 0px !important;
+	transition: border-color 150ms ease, box-shadow 150ms ease;
 }
-.arlo_tm_contact_wrap .main_input_wrap .wrap input:focus{
+.arlo_tm_contact_wrap .main_input_wrap .wrap input:focus,
+.arlo_tm_contact_wrap .main_input_wrap .wrap input:focus-visible{
 	outline: none;
+	border-bottom-color: #E3872D;
+	box-shadow: 0 1px 0 #E3872D;
 }
 .arlo_tm_contact_wrap .main_input_wrap .wrap textarea{
 	width: 100%;
@@ -1921,9 +1901,13 @@ img.svg{
 	border-bottom: 1px solid rgba(10,4,37,1);
 	color: #333;
 	padding-left: 0px !important;
+	transition: border-color 150ms ease, box-shadow 150ms ease;
 }
-.arlo_tm_contact_wrap .main_input_wrap .wrap textarea:focus{
+.arlo_tm_contact_wrap .main_input_wrap .wrap textarea:focus,
+.arlo_tm_contact_wrap .main_input_wrap .wrap textarea:focus-visible{
 	outline: none;
+	border-bottom-color: #E3872D;
+	box-shadow: 0 1px 0 #E3872D;
 }
 
 #sendMessageButton{
@@ -1943,7 +1927,9 @@ img.svg{
     display: inline-block;
     position: relative;
     overflow: hidden;
+    transition: transform var(--dur-press) var(--ease-out);
 }
+.arlo_tm_contact_wrap .arlo_tm_button button:active{transform: scale(.97);}
 
 .arlo_tm_contact_wrap .arlo_tm_button button:before{
 	position: absolute;
@@ -1951,13 +1937,14 @@ img.svg{
     top: 0px;
     height: 100%;
     left: -25%;
-    width: 0%;
+    width: 170%;
     background-color: #041230;
-    transform: skew(50deg);
-    transition-duration: .6s;
+    transform: skew(50deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 300ms var(--ease-out);
     z-index: 1;
 }
-.arlo_tm_contact_wrap .arlo_tm_button button:hover:before{width: 170%;}
+.arlo_tm_contact_wrap .arlo_tm_button button:hover:before{transform: skew(50deg) scaleX(1);}
 .arlo_tm_contact_wrap .arlo_tm_button button span{
 	position: relative;
 	z-index: 2;
@@ -2040,7 +2027,7 @@ img.svg{
 
 .arlo_tm_totop{
 	position: fixed;
-	bottom: 40px;
+	bottom: 55px;
 	right: 55px;
 	z-index: 100;
 	overflow: hidden;
@@ -2053,12 +2040,10 @@ img.svg{
 	
 	opacity: 0;
 	visibility: hidden;
-	
-	-webkit-transition: all .5s ease;
-	   -moz-transition: all .5s ease;
-	    -ms-transition: all .5s ease;
-	     -o-transition: all .5s ease;
-	        transition: all .5s ease;
+	transform: translateY(8px);
+	transition: opacity var(--dur-ui) ease-out,
+	            transform var(--dur-ui) var(--ease-out),
+	            visibility 0s linear var(--dur-ui);
 }
 .arlo_tm_totop:before{
 	position: absolute;
@@ -2066,10 +2051,11 @@ img.svg{
     top: 0px;
     height: 100%;
     left: -75%;
-    width: 0%;
+    width: 290%;
     background-color: #041230;
-    transform: skew(50deg);
-    transition-duration: .6s;
+    transform: skew(50deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 300ms var(--ease-out);
     z-index: 1;
 }
 .arlo_tm_totop:after{
@@ -2083,11 +2069,12 @@ img.svg{
     left: 17px;
 	z-index: 2;
 }
-.arlo_tm_totop:hover:before{width: 290%;}
+.arlo_tm_totop:hover:before{transform: skew(50deg) scaleX(1);}
+.arlo_tm_totop:active{transform: translateY(0) scale(.97);}
 .arlo_tm_totop.opened{
 	opacity: 1;
 	visibility: visible;
-	bottom: 55px;
+	transform: translateY(0);
 }
 
 /*---------------------------------------------------*/
@@ -2257,11 +2244,7 @@ img.svg{
 	font-weight: 600;
 	font-size: 16px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: color 150ms ease;
 }
 .arlo_tm_portfolio_single_wrap .pagination_wrap a:hover{color: #E3872D;}
 
@@ -2398,11 +2381,10 @@ img.svg{
 	background-color: #fff;
 	width: 30px;
 	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
+	transition: background-color 200ms ease,
+	            transform 300ms ease,
+	            top 300ms ease,
+	            opacity 150ms ease;
 }
 .arlo_tm_mobile_menu_wrap{
 	width: 100%;
@@ -2555,8 +2537,7 @@ img.svg{
 	.arlo_tm_list_wrap > ul.total{margin: 0px;}
 	.arlo_tm_list_wrap > ul.total > li{width: 100%;padding-left: 0px;}
 	.arlo_tm_about_wrap .about_short_contact_wrap ul li{width: 100%;}
-	.arlo_tm_totop{right: 20px;bottom: 10px;}
-	.arlo_tm_totop.opened{bottom: 20px;}
+	.arlo_tm_totop{right: 20px;bottom: 20px;}
 	.arlo_tm_portfolio_single_wrap .title_holder h3{font-size: 45px;}
 }
 @media (max-width: 480px) {
@@ -2598,13 +2579,25 @@ img.svg{
 
 
 .portfolio-thumbnail{
+	position: relative;
 	opacity: 1;
     transform: scale(1);
-    transition: transform 0.5s, opacity 0.5s, background-image 0.5s;
+    transition: transform var(--dur-ui) var(--ease-out);
+}
+.portfolio-thumbnail::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-color: rgba(0,0,0,.8);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--dur-ui) ease-out;
 }
 .portfolio-thumbnail:hover{
-	background-image: linear-gradient(rgba(0,0,0,.8));
 	transform: scale(1.03);
+}
+.portfolio-thumbnail:hover::after{
+	opacity: 1;
 }
 #phoneAndEmail:hover{
 	color: blue;

@@ -647,6 +647,12 @@ function arlo_tm_ripple(){
 	
 	"use strict";
 	
+	// Continuous background motion is exactly what reduced-motion users opt out of.
+	window.arlo_tm_ripple_active = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if(!window.arlo_tm_ripple_active){
+		return;
+	}
+	
 	jQuery('#ripple').ripples({
 			resolution: 500,
 			dropRadius: 20,
@@ -685,9 +691,11 @@ function arlo_tm_switcher(){
 			leftPart.addClass('opened');
 			rightPart.addClass('opened');
 		}
-		setTimeout(function(){jQuery('#ripple').ripples('updateSize');},101);
-		setTimeout(function(){jQuery('#ripple').ripples('updateSize');},201);
-		setTimeout(function(){jQuery('#ripple').ripples('updateSize');},301);
+		if(window.arlo_tm_ripple_active){
+			setTimeout(function(){jQuery('#ripple').ripples('updateSize');},101);
+			setTimeout(function(){jQuery('#ripple').ripples('updateSize');},201);
+			setTimeout(function(){jQuery('#ripple').ripples('updateSize');},301);
+		}
 		
 		if(jQuery('.jarallax').length){
 			jQuery('.jarallax').jarallax('destroy');
