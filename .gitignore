@@ -33,8 +33,7 @@ vendor/
 # Build outputs
 dist/
 build/
-*.min.js
-*.min.css
+.astro/
 
 # Sensitive configuration
 email_config.php
