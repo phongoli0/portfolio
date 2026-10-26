@@ -1549,6 +1549,8 @@ function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,func
 /* How to use? : Check the GitHub README
 /* ----------------------------------------------- */
 
+// Hero particle layer is optional; skip the call when its container is absent.
+if (document.getElementById('particles-js')) {
 particlesJS('particles-js',
   
   {
@@ -1669,4 +1671,5 @@ particlesJS('particles-js',
   }
 
 );
+}
 	
