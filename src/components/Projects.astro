@@ -25,6 +25,17 @@ import { projects } from '../data/content';
                 ))}
               </ul>
 
+              {project.stats.length > 0 && (
+                <dl class="work__stats">
+                  {project.stats.map((stat) => (
+                    <div>
+                      <dt>{stat.label}</dt>
+                      <dd>{stat.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+
               {project.links.length > 0 && (
                 <p class="work__links">
                   {project.links.map((link) => (
@@ -121,12 +132,42 @@ import { projects } from '../data/content';
     letter-spacing: 0.01em;
   }
 
+  .work__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 48px);
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .work__stats div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+
+  /* Numbers carry the card; the label stays quiet under them. */
+  .work__stats dd {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .work__stats dt {
+    font-size: var(--step--1);
+    letter-spacing: -0.005em;
+    color: var(--text-3);
+  }
+
   .work__links {
     display: flex;
     gap: 18px;
     margin-top: 20px;
   }
-
   .work__links a {
     display: inline-flex;
     align-items: center;

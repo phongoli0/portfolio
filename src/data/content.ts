@@ -105,11 +105,13 @@ export const services = {
 };
 
 export type ProjectLink = { label: string; href: string };
+export type ProjectStat = { value: string; label: string };
 export type Project = {
   title: string;
   year: string;
   body: string;
   stack: string[];
+  stats: ProjectStat[];
   flowTitle: string;
   steps: string[];
   links: ProjectLink[];
@@ -123,13 +125,17 @@ export const projects = {
     {
       title: 'Marketo to Braze Migration',
       year: '2025 — 2026',
-      body: 'A mid-size enterprise moving its lifecycle marketing off Marketo and onto Braze. I led the engagement as the freelance solutions architect — owning the technical plan, the data model, the migration of journeys and campaigns, and the cutover. The hard part was never the API calls; it was deciding what the old platform’s accumulated behaviour was actually supposed to do, and rebuilding only that.',
+      body: 'A mid-size enterprise moving its lifecycle marketing off Marketo and onto Braze. I led the engagement as the freelance solutions architect — owning the technical plan, the data model, the migration itself, and the cutover. The hard part was never the API calls; it was deciding what the old platform’s accumulated behaviour was actually supposed to do, and rebuilding only that.',
       stack: ['Braze', 'Marketo', 'API Integration', 'Data Migration'],
+      stats: [
+        { value: '25+', label: 'playbooks rebuilt' },
+        { value: '300+', label: 'emails migrated' },
+      ],
       flowTitle: 'Engagement phases',
       steps: [
         'Current-state audit and asset inventory',
         'Data model and audience mapping',
-        'Journey and campaign rebuild',
+        'Rebuild 25+ playbooks and 300+ emails',
         'Integration, QA and parallel run',
         'Cutover and stabilisation',
       ],
@@ -140,6 +146,10 @@ export const projects = {
       year: '2026',
       body: 'A Discord-first agent that watches for image uploads and answers with three caption options — sentimental, witty and short — written for a Vietnamese lifestyle persona. Gemini 2.5 Flash does the writing; the surrounding system handles the parts that make it usable: attachment detection, image preprocessing, graceful degradation when the model is slow, and logging that survives production traffic.',
       stack: ['Python', 'Gemini 2.5 Flash', 'Pillow', 'Discord API'],
+      stats: [
+        { value: '3', label: 'caption styles per image' },
+        { value: '0', label: 'manual steps for the user' },
+      ],
       flowTitle: 'How it runs',
       steps: [
         'Image uploaded to any channel',
