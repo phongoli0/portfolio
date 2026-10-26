@@ -1,0 +1,229 @@
+---
+import Icon from './Icon.astro';
+import { hero } from '../data/content';
+
+const [firstRole] = hero.roles;
+---
+
+<section class="section hero" id="home">
+  <div class="hero__glow" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <h1 class="hero__name">
+      {hero.firstName}{' '}
+      <span>{hero.lastName}</span>
+    </h1>
+
+    <p class="hero__role">
+      <span class="hero__role-text" data-role data-roles={JSON.stringify(hero.roles)}>{firstRole}</span><span
+        class="hero__caret"
+        aria-hidden="true"></span>
+    </p>
+
+    <div class="hero__actions">
+      <a class="button button--primary" href="#about">About me</a>
+      <a class="button button--secondary" href="#contact">Get in touch</a>
+    </div>
+
+    <ul class="hero__social">
+      {
+        hero.social.map((s) => (
+          <li>
+            <a href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
+              <Icon name={s.icon} size={20} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <a class="hero__cue" href="#about" aria-label="Scroll to about">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 16.5 5.6 10 7 8.6l5 5 5-5L18.4 10z" fill="currentColor"></path>
+    </svg>
+  </a>
+</section>
+
+<script>
+  // Rotating role line: types forward, holds, deletes, advances.
+  const el = document.querySelector<HTMLElement>('[data-role]');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (el) {
+    const roles: string[] = JSON.parse(el.dataset.roles ?? '[]');
+
+    if (roles.length > 1 && !reduce.matches) {
+      let index = 0;
+      let chars = roles[0].length;
+      let deleting = false;
+
+      const tick = () => {
+        const current = roles[index];
+
+        if (!deleting) {
+          chars += 1;
+          el.textContent = current.slice(0, chars);
+          if (chars >= current.length) {
+            deleting = true;
+            window.setTimeout(tick, 2400);
+            return;
+          }
+          window.setTimeout(tick, 55);
+          return;
+        }
+
+        chars -= 1;
+        el.textContent = current.slice(0, Math.max(chars, 0));
+        if (chars <= 0) {
+          deleting = false;
+          index = (index + 1) % roles.length;
+          window.setTimeout(tick, 320);
+          return;
+        }
+        window.setTimeout(tick, 28);
+      };
+
+      window.setTimeout(tick, 2200);
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    display: grid;
+    align-content: center;
+    min-height: calc(100svh - var(--nav-height));
+    padding-block: clamp(72px, 12vh, 140px);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero__glow {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    width: min(1100px, 130vw);
+    aspect-ratio: 1;
+    translate: -50% 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at center,
+      rgb(227 135 45 / 16%) 0%,
+      rgb(227 135 45 / 5%) 34%,
+      transparent 62%
+    );
+  }
+
+  .hero__inner {
+    position: relative;
+    display: grid;
+    justify-items: center;
+  }
+
+  .hero__name {
+    font-size: var(--step-5);
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+  }
+
+  .hero__name span {
+    color: var(--accent);
+  }
+
+  .hero__role {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.5em;
+    margin-top: clamp(18px, 2.4vw, 28px);
+    font-size: var(--step-2);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-2);
+  }
+
+  .hero__caret {
+    width: 2px;
+    height: 1.05em;
+    margin-left: 3px;
+    background: var(--accent);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: clamp(28px, 4vw, 44px);
+  }
+
+  .hero__social {
+    display: flex;
+    gap: 6px;
+    margin-top: 28px;
+  }
+
+  .hero__social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--text-2);
+    transition:
+      color var(--dur-ui) var(--ease-out),
+      background-color var(--dur-ui) var(--ease-out),
+      transform var(--dur-press) var(--ease-out);
+  }
+
+  .hero__social a:active {
+    transform: scale(0.94);
+  }
+
+  .hero__cue {
+    position: absolute;
+    bottom: clamp(14px, 3vh, 30px);
+    left: 50%;
+    translate: -50% 0;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text-3);
+    animation: cue 2.6s var(--ease-in-out) 1.4s infinite;
+  }
+
+  .hero__cue svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @keyframes cue {
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    30% {
+      transform: translateY(5px);
+      opacity: 1;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero__social a:hover {
+      color: var(--text);
+      background: rgb(255 255 255 / 6%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__cue {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+</style>

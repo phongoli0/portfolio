@@ -1,0 +1,107 @@
+---
+import Icon from './Icon.astro';
+import { hero, site } from '../data/content';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span>{site.name}</span>
+      <p>MarTech Solutions Architect · Orange County, CA</p>
+    </div>
+
+    <a class="footer__top" href="#home">Back to top</a>
+
+    <div class="footer__social">
+      {
+        hero.social.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
+            <Icon name={s.icon} size={18} />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="container footer__legal">
+    <p>© {year} {site.url.replace(/^https?:\/\//, '')}, All Rights Reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--hairline);
+    padding-block: clamp(40px, 6vw, 64px) 32px;
+    background: var(--surface);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .footer__brand span {
+    font-weight: 600;
+  }
+
+  .footer__brand p {
+    margin-top: 4px;
+    font-size: var(--step--1);
+    color: var(--text-3);
+  }
+
+  .footer__top {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    font-size: var(--step--1);
+    color: var(--text-2);
+    transition: color var(--dur-ui) var(--ease-out);
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 4px;
+  }
+
+  .footer__social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--text-2);
+    transition:
+      color var(--dur-ui) var(--ease-out),
+      background-color var(--dur-ui) var(--ease-out),
+      transform var(--dur-press) var(--ease-out);
+  }
+
+  .footer__social a:active {
+    transform: scale(0.94);
+  }
+
+  .footer__legal {
+    margin-top: clamp(30px, 4vw, 48px);
+    padding-top: 22px;
+    border-top: 1px solid var(--hairline);
+    font-size: var(--step--1);
+    color: var(--text-3);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer__top:hover,
+    .footer__social a:hover {
+      color: var(--text);
+    }
+
+    .footer__social a:hover {
+      background: rgb(255 255 255 / 6%);
+    }
+  }
+</style>

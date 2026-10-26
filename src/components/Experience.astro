@@ -1,0 +1,100 @@
+---
+import { experience } from '../data/content';
+---
+
+<section class="section section--surface experience" id="experience">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">{experience.eyebrow}</p>
+      <h2>{experience.title}</h2>
+      <p>{experience.subtitle}</p>
+    </div>
+
+    <ol class="rail">
+      {
+        experience.roles.map((role, i) => (
+          <li class="rail__item" data-reveal style={`--reveal-delay:${i * 40}`}>
+            <p class="rail__period">{role.period}</p>
+            <div class="rail__body">
+              <h3>{role.title}</h3>
+              <p class="rail__company">{role.company}</p>
+              <p class="rail__text">{role.body}</p>
+              <ul class="rail__tags">
+                {role.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .rail {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .rail__item {
+    display: grid;
+    gap: 8px 40px;
+    padding-block: clamp(28px, 4vw, 44px);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .rail__period {
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rail__body h3 {
+    font-size: var(--step-2);
+    letter-spacing: -0.025em;
+  }
+
+  .rail__company {
+    margin-top: 6px;
+    font-size: var(--step-0);
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .rail__text {
+    margin-top: 16px;
+    max-width: 64ch;
+    color: var(--text-2);
+  }
+
+  .rail__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .rail__tags li {
+    padding: 5px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+    color: var(--text-3);
+  }
+
+  @media (min-width: 760px) {
+    .rail__item {
+      grid-template-columns: 170px minmax(0, 1fr);
+    }
+
+    .rail__period {
+      padding-top: 6px;
+    }
+  }
+</style>

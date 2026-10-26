@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
+import { about } from '../data/content';
+---
+
+<section class="section about" id="about">
+  <div class="container about__grid">
+    <figure class="about__figure" data-reveal>
+      <Image
+        src={portrait}
+        alt="Phong Truong"
+        widths={[420, 640, 880]}
+        sizes="(max-width: 900px) 88vw, 420px"
+        formats={['avif', 'webp']}
+        quality={82}
+        loading="eager"
+      />
+    </figure>
+
+    <div class="about__body">
+      <p class="eyebrow" data-reveal>{about.eyebrow}</p>
+      <h2 class="about__title" data-reveal style="--reveal-delay:60">{about.title}</h2>
+      <p class="about__lead" data-reveal style="--reveal-delay:120">{about.lead}</p>
+
+      {
+        about.paragraphs.map((text, i) => (
+          <p class="about__text" data-reveal style={`--reveal-delay:${180 + i * 40}`}>
+            {text}
+          </p>
+        ))
+      }
+
+      <div class="about__actions" data-reveal style="--reveal-delay:340">
+        {
+          about.actions.map((action) => (
+            <a
+              class:list={['button', `button--${action.variant}`]}
+              href={action.href}
+              {...(action.external ? { target: '_blank', rel: 'noopener' } : {})}
+            >
+              {action.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--canvas);
+  }
+
+  .about__grid {
+    display: grid;
+    gap: clamp(36px, 6vw, 80px);
+    align-items: start;
+  }
+
+  .about__figure {
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--hairline);
+  }
+
+  .about__figure :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+
+  .about__title {
+    margin-top: 14px;
+    font-size: var(--step-3);
+  }
+
+  .about__lead {
+    margin-top: 18px;
+    font-size: var(--step-1);
+    line-height: 1.45;
+    letter-spacing: -0.015em;
+    color: var(--text-2);
+  }
+
+  .about__text {
+    margin-top: 18px;
+    color: var(--text-2);
+    max-width: 62ch;
+  }
+
+  .about__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: clamp(28px, 4vw, 40px);
+  }
+
+  @media (min-width: 900px) {
+    .about__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    }
+
+    .about__figure {
+      position: sticky;
+      top: calc(var(--nav-height) + 32px);
+    }
+  }
+</style>
