@@ -1,173 +1,89 @@
-# Portfolio Website
+# Portfolio
 
-A modern, responsive portfolio website showcasing projects, skills, and experience. Built with HTML5, CSS3, JavaScript, and jQuery.
+Personal site for Phong Truong — MarTech Solutions Architect.
 
-![Portfolio Preview](img/hero/1.jpg)
+Astro static build, one page, dark canvas, system type. No client framework;
+about 2 KB of inline JavaScript for scroll reveals, scroll-spy and the mobile nav.
 
-## Features
+## Commands
 
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Modern UI/UX**: Clean, professional design with smooth animations
-- **Portfolio Showcase**: Interactive project gallery with filtering
-- **Contact Form**: Functional contact form with validation
-- **Performance Optimized**: Fast loading times and optimized assets
-- **Accessibility**: WCAG compliant with proper semantic HTML
-
-## Project Structure
-
-```
-portfolio/
-├── index.html              # Main entry point
-├── css/
-│   ├── style.css          # Main stylesheet
-│   ├── plugins.css        # Third-party plugin styles
-│   └── modal.css          # Modal dialog styles
-├── js/
-│   ├── init.js            # Page initialization
-│   ├── contact_me.js      # Contact form handling
-│   ├── portfolioFilter.js # Portfolio filtering logic
-│   ├── jquery.js          # jQuery library
-│   └── plugins.js         # Third-party plugins
-├── img/                   # All images and assets
-├── archive/               # Archived PHP mail handler
-│   └── phpmail_backup/
-│       ├── mail_handler.php
-│       ├── email_config.default.php
-│       └── phpmailer/     # PHPMailer library
-├── .github/               # GitHub configuration
-│   └── copilot-instructions.md
-└── .vscode/               # VS Code configuration (gitignored)
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # -> dist/
+npm run preview  # serve dist/ locally
 ```
 
-## Technologies Used
+## Structure
 
-- **HTML5**: Semantic markup
-- **CSS3**: Flexbox, Grid, animations, media queries
-- **JavaScript**: Vanilla JS and jQuery
-- **jQuery Plugins**: 
-  - jqBootstrapValidation (form validation)
-  - Various UI components
-- **PHPMailer**: Email sending functionality (archived)
-- **Netlify Forms**: Alternative contact form handling
+```
+src/
+├─ assets/            portrait, 8 skill logos, 6 service icons
+├─ components/        SiteNav Hero About Skills Services Experience Contact Footer Icon
+├─ data/
+│  ├─ content.ts      every string on the page, typed
+│  ├─ logos.ts        static image map for the skill wall
+│  └─ icons.ts        service SVG sources, inlined at build
+├─ layouts/Base.astro head, fonts, OG tags, favicon
+├─ pages/index.astro  the page + the only client script
+└─ styles/global.css  tokens, reset, type scale, buttons, preference blocks
+public/               favicon, apple-touch-icon, résumé PDF
+legacy/               the previous static site, kept for reference — not built
+```
 
-## Getting Started
+Edit copy in `src/data/content.ts`, not in the components. Components read from it.
 
-### Local Development
+## Design rules
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/portfolio.git
-   cd portfolio
-   ```
+These are the constraints the page is built to. Changing them should be
+deliberate, not incidental.
 
-2. **Run a local server**
-   ```bash
-   # Using Python
-   python3 -m http.server 8080
-   
-   # Or using PHP (for testing PHP mail handler)
-   cd archive/phpmail_backup && php -S localhost:8000
-   ```
+**Colour.** Every text/background pair is measured, not eyeballed. `#f5f5f7`,
+`#a1a1a6` and `#86868b` all clear 4.5:1 on `#000` and `#141416`. The accent
+`#e3872d` is 7.77:1 on black; **buttons take black text on orange** (7.77:1) —
+white on orange is only 2.70:1 and must not come back.
 
-3. **Open in browser**
-   Navigate to `http://localhost:8080`
+**Type.** One system stack. Personality lives in the scale: display at
+`clamp(3rem, 9vw, 7.5rem)` with `-0.035em` tracking, body at 17px.
 
-### Contact Form Setup
+**Motion.** Animate `transform` and `opacity` only. No `transition: all`, no
+`scale(0)` entries, no `ease-in`. UI durations stay under 300 ms, press feedback
+is `scale(0.97)` at 100 ms, and staggering is 30–80 ms.
 
-The portfolio includes two contact form options:
+**Hover.** Every hover rule sits inside `@media (hover: hover) and (pointer: fine)`,
+because touch devices fire hover on tap.
 
-#### Option 1: Netlify Forms (Recommended for static hosting)
-1. Add `data-netlify="true"` to the form in `index.html`
-2. Add a hidden input: `<input type="hidden" name="form-name" value="contact">`
-3. Deploy to Netlify - forms will work automatically
+**Preferences.** `prefers-reduced-motion` removes movement but keeps fades;
+`prefers-reduced-transparency` drops the nav blur; `prefers-contrast: more`
+raises the hairlines and lightens the greys. All three are in `global.css`.
 
-#### Option 2: PHP Mail Handler (Archived)
-1. Copy `archive/phpmail_backup/email_config.default.php` to `email_config.php`
-2. Update SMTP credentials in `email_config.php`
-3. Ensure PHP server is running
+**The nav is a material.** Translucent, blurred, with a soft gradient edge that
+fades in once content scrolls under it — not a 1px border.
 
-**⚠️ Security Note**: Never commit real credentials. The `email_config.php` file is gitignored.
+**One signature element.** The portrait in About, large and sticky. Everything
+else stays quiet: no counters, no stats, no `01 / 02 / 03` numbering.
 
-## Deployment
+## Contact form
 
-### Netlify (Recommended)
-1. Push to GitHub
-2. Connect repository to Netlify
-3. Enable Netlify Forms for contact functionality
-4. Deploy automatically on push
+Netlify Forms. The markup must keep, or Netlify stops detecting it:
 
-### GitHub Pages
-1. Enable GitHub Pages in repository settings
-2. Set source to `main` branch
-3. Use Netlify Forms or a third-party form service
+- `data-netlify="true"`
+- `name="contact-form"`
+- the hidden `<input name="form-name" value="contact-form">`
+- the `bot-field` honeypot inside `.hidden`
 
-### Traditional Hosting
-1. Upload all files to web server
-2. Ensure PHP support if using PHP mail handler
-3. Configure SMTP settings in `email_config.php`
+Verify with `grep form-name dist/index.html` after a build.
 
-## Customization
+## Deploy
 
-### Styling
-- Modify `css/style.css` for colors, fonts, and layout
-- Update `css/modal.css` for modal dialog styles
-- Replace images in `img/` directory
+Netlify reads `netlify.toml`: build `npm run build`, publish `dist`, Node 22.
+Pushing to `master` is the deploy.
 
-### Content
-- Edit `index.html` for page structure and content
-- Update portfolio items in the portfolio section
-- Modify contact form fields in `js/contact_me.js`
+The repo previously deployed the static files straight from the root. That
+directory is now `legacy/`, which Astro does not build.
 
-### JavaScript
-- Edit `js/init.js` for page initialization
-- Modify `js/portfolioFilter.js` for portfolio filtering logic
-- Update `js/contact_me.js` for form behavior
+## Accessibility
 
-## Security Considerations
-
-This repository has been secured for public sharing:
-
-- ✅ **API Keys Removed**: All hardcoded API keys replaced with placeholders
-- ✅ **Sensitive Files Gitignored**: `.env`, `email_config.php`, `.vscode/` excluded
-- ✅ **Comprehensive `.gitignore`**: Includes patterns for OS files, IDE files, dependencies
-- ✅ **Placeholder Credentials**: Sample credentials replaced with `YOUR_*` placeholders
-
-**Files modified for security:**
-- `archive/phpmail_backup/phpmailer/PHPMailer/get_oauth_token.php` - OAuth credentials replaced
-- `.vscode/mcp.json` - API key replaced with placeholder
-- `.gitignore` - Updated with comprehensive exclusion patterns
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome for Android)
-
-## Performance
-
-- Optimized images in `img/` directory
-- Minified CSS and JavaScript where applicable
-- Lazy loading for images
-- Efficient CSS animations
-
-## License
-
-This project is available for personal and commercial use. Attribution is appreciated but not required.
-
-## Acknowledgments
-
-- Design inspired by modern portfolio templates
-- Icons from various SVG sources
-- PHPMailer for email functionality
-- jQuery and Bootstrap for UI components
-
-## Contact
-
-For questions or feedback, please use the contact form on the website or open an issue in this repository.
-
----
-
-**Last Updated**: April 2026
-**Version**: 1.0.0
+Skip link, semantic landmarks, `aria-label` on icon-only links, visible
+`focus-visible` rings in the accent colour, 44px touch targets on coarse
+pointers, and no meaning carried by colour alone.

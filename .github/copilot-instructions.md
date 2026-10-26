@@ -1,72 +1,81 @@
 # Copilot instructions for this repo
 
-Purpose
-- This is a small static portfolio site (HTML/CSS/JS) with an archived PHP mail handler. Changes should preserve the simple, dependency-free front-end and existing integration points.
+## What this is
 
-Big picture
-- Front-end: `index.html` (root) and other pages are static files that include scripts from `js/` and styles from `css/`.
-- Client-side libraries: this project relies on jQuery and Bootstrap plugins (see `js/jquery.js`, `js/plugins.js`, `css/plugins.css`).
-- Contact flow: contact form is handled in `js/contact_me.js` which intentionally triggers a native form POST (not AJAX). An archived PHP handler exists at `archive/phpmail_backup/mail_handler.php` using PHPMailer and reads SMTP credentials from `email_config.php` (see `email_config.default.php`).
- - Contact flow: contact form is handled in `js/contact_me.js` which intentionally triggers a native form POST (not AJAX). An archived PHP handler exists at `archive/phpmail_backup/mail_handler.php` using PHPMailer and reads SMTP credentials from `email_config.php` (see `email_config.default.php`). If you are deploying to Netlify you can instead use Netlify Forms and skip the PHP handler.
+A one-page personal portfolio: Astro static build, no client framework, dark
+canvas, system fonts. It ships as plain HTML/CSS plus a small inline script.
+There is no jQuery, no Bootstrap, no PHP.
 
-Key files to inspect before editing
-- `index.html` — entry point and script/style includes.
-- `js/contact_me.js` — contact form behavior: client-side validation, disables submit button, then re-enables and performs native submit.
-- `js/init.js` and `js/portfolioFilter.js` — page initialization and portfolio filtering logic.
-- `css/style.css` and `css/modal.css` — primary styling and modal rules.
-- `archive/phpmail_backup/mail_handler.php` and `archive/phpmail_backup/email_config.default.php` — PHP SMTP flow and how credentials are expected.
+`legacy/` holds the previous 2018 template site. It is **not** built and **not**
+published. Do not edit it to change the live page; read it only to recover old
+content.
 
-Project-specific conventions and patterns
-- Do not replace the native form submission flow in `js/contact_me.js`. The code intentionally avoids AJAX so simple static hosts (Netlify, GitHub Pages with forms handling) or a PHP backend can receive POSTs.
-- Keep the legacy jQuery-based patterns. New JS should not assume module bundlers or ES modules — add plain script files and include them in `index.html` in the same order as existing scripts.
-- Client-side validation uses `jqBootstrapValidation` (see `js/jqBootstrapValidation.js`). Maintain compatibility if you modify validation logic.
-- PHP mailer: `mail_handler.php` uses PHPMailer with `require_once` relative paths. If moving or refactoring, update these requires and `email_config.php` usage.
-
-Integration and deployment notes
-- There is no build system (no `package.json`, webpack, or similar). Deploy by copying the site files to the host.
-- If you want to test the contact form against the PHP handler, run it on a PHP-capable server or use `php -S localhost:8000` inside `archive/phpmail_backup` and POST the form to that endpoint.
-- SMTP credentials: do not commit real credentials. Use `email_config.default.php` as a template; create `email_config.php` locally with `define('EMAIL_USER', ...)` and `EMAIL_PASS`.
-
-Netlify (current target)
-- This repo often deploys to Netlify. If you choose Netlify:
-	- Use Netlify Forms instead of the PHP handler. Add `data-netlify="true"` and a form `name` to your form, for example:
-
-```html
-<form name="contact" method="POST" data-netlify="true">
-	<input type="hidden" name="form-name" value="contact">
-	<!-- fields: name, email, subject, message -->
-</form>
-```
-
-	- `js/contact_me.js` is built around a native submit flow; if you keep it ensure it does not prevent Netlify from receiving the POST. Otherwise remove or disable `js/contact_me.js` and rely on Netlify Forms.
-	- Netlify shows submissions in the site admin; to test locally install the Netlify CLI and run `netlify dev` or `npx netlify-cli dev` from the repository root.
-
-Local Netlify testing
+## Commands
 
 ```bash
-# install once (if needed)
-npx netlify-cli install
-
-# start local dev server
-npx netlify-cli dev
+npm run dev      # local dev server
+npm run build    # static output in dist/
+npm run preview  # serve the built output
 ```
 
- - If you are using Netlify Forms you can ignore or remove `archive/phpmail_backup` from deployments; keep it only if you plan to host the PHP handler on a separate PHP server.
+There is no test suite and no linter configured. Validate by building and
+looking at the page.
 
-Debugging tips
-- To get SMTP debug output in `mail_handler.php`, set `$mail->SMTPDebug = 2;` (or other integer) and run through a PHP server. Look at `$mail->ErrorInfo` for failures.
-- For front-end issues, open the browser console and confirm script load order — jQuery must be loaded before any plugin script.
+## Where things live
 
-What to change and what to avoid
-- Safe to update styles in `css/` and to add small, plain JS helpers in `js/` (follow existing pattern).
-- Avoid converting the front-end to a modern bundler or framework within the same commit; those are large structural changes and should be proposed separately.
-- When editing PHP in `archive/`, preserve `require_once` paths and PHPMailer usage unless you also update deployment instructions.
+- `src/data/content.ts` — every string on the page. Edit copy here, never inline
+  in a component.
+- `src/components/*.astro` — one component per section. Layout and scoped styles
+  live with the section.
+- `src/styles/global.css` — tokens, reset, type scale, `.button`, `.section`,
+  `.container`, the reveal utilities, and the three preference blocks.
+- `src/pages/index.astro` — the page and the only client script (reveal
+  observer, scroll-spy, mobile nav sheet).
 
-Search examples
-- Contact behavior: `js/contact_me.js`
-- SMTP handling: `archive/phpmail_backup/mail_handler.php` and `archive/phpmail_backup/email_config.default.php`
+## Rules that matter
 
-Questions
-- If any behavior or deployment target is unclear, ask which host (Netlify, GitHub Pages, Apache/PHP) you intend to support before making changes.
+**Contrast is measured, not estimated.** The palette in `global.css` was checked
+against WCAG. `#e3872d` is 7.77:1 on black, so orange buttons take **black**
+text. White on orange is 2.70:1 and fails — do not reintroduce it. Any new
+colour pair needs the ratio computed before it ships.
 
-Please review and tell me which parts need more detail or examples.
+**Motion.** Animate `transform` and `opacity` only. No `transition: all`, no
+`scale(0)` entrances, no `ease-in`. Keep UI durations under 300 ms; press
+feedback is `scale(0.97)` at 100 ms.
+
+**Hover belongs in a media query.** Wrap hover rules in
+`@media (hover: hover) and (pointer: fine)`, otherwise touch taps trigger them.
+
+**Reduced motion is not "no animation".** Remove movement, keep opacity fades.
+`prefers-reduced-transparency` and `prefers-contrast: more` have answers too.
+
+**Do not add a framework or CSS library.** The page is intentionally dependency
+free. A new npm dependency needs a stated reason.
+
+**Icons must be inlined.** The service icons are dark artwork; as `<img>` they
+render black on black. They go through `Icon.astro`, which inlines the SVG and
+lets `currentColor` tint it.
+
+**The skill wall mixes colour and monochrome on purpose.** Marks whose artwork is
+dark on transparency (`aws.png`, `wordpress.png`) carry `.is-mono` and are
+inverted, because they would otherwise disappear on the dark tile.
+
+## The contact form
+
+Netlify Forms. The form must keep `data-netlify="true"`, `name="contact-form"`,
+the hidden `form-name` input, and the `bot-field` honeypot inside `.hidden`.
+Removing any of them silently breaks submissions.
+
+## Deploy
+
+`netlify.toml` sets build `npm run build`, publish `dist`, Node 22. Pushing to
+`master` deploys.
+
+## Before you call it done
+
+- `npm run build` succeeds
+- the page renders at 1440, 768 and 390 px with no horizontal overflow
+- zero console errors, zero failed requests
+- `grep form-name dist/index.html` still finds the hidden input
+- any new colour pair has a computed contrast ratio of at least 4.5:1 for body
+  text, or 3:1 for large text
