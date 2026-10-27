@@ -145,12 +145,12 @@ export const projects = {
     {
       title: 'MarTech Sourcing Pipeline',
       year: '2026',
-      body: 'A job search treated as a data orchestration problem. Instead of scrolling job boards, a Python pipeline queries multiple APIs for roles posted in the last 72 hours — remote and Southern California — then scores each one 0–100 for relevance and drops the noise, like backend and DevOps-heavy postings that do not fit a customer-facing MarTech brief. For whatever survives, it maps my past architecture work against each company’s integration endpoints, so I walk into the conversation already knowing where I fit. Qualified roles land in a structured Notion database for daily review.',
+      body: 'A job search treated as a data orchestration problem. Instead of scrolling job boards, a Python pipeline queries multiple APIs for roles posted in the last 72 hours — remote and Southern California — then scores each one 0–100 for relevance and drops the noise, like backend and DevOps-heavy postings that do not fit a customer-facing MarTech brief. For whatever survives, it maps my past architecture work against each company’s integration endpoints, so I walk into the conversation already knowing where I fit. Qualified roles land in a structured Notion database for daily review — around fifteen a week, which is the whole point: a short list I actually read instead of a feed I scroll past.',
       stack: ['Python', 'LLM scoring', 'REST APIs', 'Notion API'],
       stats: [
+        { value: '~15', label: 'roles surfaced per week' },
         { value: '72h', label: 'freshness window' },
         { value: '0–100', label: 'relevance score' },
-        { value: '3', label: 'role families' },
       ],
       flowTitle: 'How it runs',
       steps: [
@@ -165,8 +165,8 @@ export const projects = {
     {
       title: 'Social Media Agent',
       year: '2026',
-      body: 'A Discord-first agent that watches for image uploads and answers with three caption options — sentimental, witty and short — written for a Vietnamese lifestyle persona. Gemini 2.5 Flash does the writing; the surrounding system handles the parts that make it usable: attachment detection, image preprocessing, graceful degradation when the model is slow, and logging that survives production traffic.',
-      stack: ['Python', 'Gemini 2.5 Flash', 'Pillow', 'Discord API'],
+      body: 'A Discord-first agent that watches for image uploads and answers with three caption options — sentimental, witty and short — written for a Vietnamese lifestyle persona. I picked Gemini for its vision quality at the time, since reading the image well is the whole problem. Around the model sits the part that makes it usable: attachment detection, image preprocessing, graceful degradation when the model is slow, and logging that survives production traffic.',
+      stack: ['Python', 'Gemini', 'Pillow', 'Discord API'],
       stats: [
         { value: '3', label: 'caption styles per image' },
         { value: '0', label: 'manual steps for the user' },
@@ -176,7 +176,7 @@ export const projects = {
         'Image uploaded to any channel',
         'Bot detects the attachment',
         'Download and preprocess with Pillow',
-        'Gemini 2.5 Flash writes three styles',
+        'Gemini writes three caption styles',
         'Formatted reply in-channel',
       ],
       links: [{ label: 'GitHub', href: 'https://github.com/phongoli0/social-media-agent' }],
