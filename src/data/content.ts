@@ -1,5 +1,6 @@
 export const site = {
   name: 'Phong Truong',
+  role: 'Solutions Architect',
   title: 'Phong Truong — MarTech Solutions Architect',
   description:
     'MarTech solutions architect working at the intersection of enterprise strategy and technical execution: CRM ecosystems, API-first integrations, data platforms and generative AI.',
