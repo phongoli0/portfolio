@@ -10,10 +10,9 @@ export const site = {
 export const nav = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Services', href: '#services' },
-  { label: 'Experience', href: '#experience' },
   { label: 'Work', href: '#work' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -21,6 +20,10 @@ export const hero = {
   firstName: 'Phong',
   lastName: 'Truong',
   roles: ['MarTech Solutions Architect', 'CRM Engineer', 'Full Stack Developer'],
+  actions: [
+    { label: 'View work', href: '#work', variant: 'primary' as const },
+    { label: 'Download Résumé', href: '/Phong-Truong-Resume.pdf', variant: 'secondary' as const, external: true },
+  ],
   social: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ptruong6/', icon: 'linkedin' as const },
     { label: 'GitHub', href: 'https://www.github.com/phongoli0/', icon: 'github' as const },
@@ -28,7 +31,6 @@ export const hero = {
 };
 
 export const about = {
-  eyebrow: 'About',
   title: 'About Me',
   lead: 'Phong Truong, Solutions Architect',
   paragraphs: [
@@ -39,7 +41,7 @@ export const about = {
   ],
   actions: [
     { label: 'Download Résumé', href: '/Phong-Truong-Resume.pdf', variant: 'primary' as const, external: true },
-    { label: 'Send Message', href: '#contact', variant: 'secondary' as const, external: false },
+    { label: 'Send message', href: '#contact', variant: 'secondary' as const, external: false },
   ],
 };
 
@@ -67,9 +69,8 @@ export type ServiceIcon = 'strategy' | 'layers' | 'code' | 'search' | 'multiuser
 export type Service = { icon: ServiceIcon; title: string; body: string };
 
 export const services = {
-  eyebrow: 'Services',
-  title: 'Services & Offerings',
-  subtitle: 'Comprehensive MarTech solutions to drive business growth',
+  title: 'Services',
+  subtitle: 'What I take on for clients.',
   items: [
     {
       icon: 'strategy',
@@ -230,10 +231,8 @@ export const experience = {
 };
 
 export const contact = {
-  eyebrow: 'Contact',
   title: 'Contact Me',
   subtitle: 'Get in touch with me',
-  formTitle: 'Get in Touch',
   details: [
     { label: 'Location', value: 'Orange County, CA', href: null },
     { label: 'Email', value: 'ptruong6@outlook.com', href: 'mailto:ptruong6@outlook.com' },
