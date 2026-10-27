@@ -8,14 +8,12 @@ const full = contact.form.fields.filter((f) => !f.half);
 <section class="section contact" id="contact">
   <div class="container">
     <div class="section-head" data-reveal>
-      <p class="eyebrow">{contact.eyebrow}</p>
       <h2>{contact.title}</h2>
       <p>{contact.subtitle}</p>
     </div>
 
     <div class="contact__grid">
       <div class="contact__details" data-reveal>
-        <h3>{contact.formTitle}</h3>
         <ul>
           {
             contact.details.map((item) => (
@@ -81,15 +79,9 @@ const full = contact.form.fields.filter((f) => !f.half);
     gap: clamp(32px, 5vw, 64px);
   }
 
-  .contact__details h3 {
-    font-size: var(--step-2);
-    letter-spacing: -0.025em;
-  }
-
   .contact__details ul {
     display: grid;
     gap: 22px;
-    margin-top: 24px;
   }
 
   .contact__details li {

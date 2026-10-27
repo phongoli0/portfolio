@@ -19,19 +19,18 @@ import { about } from '../data/content';
     </figure>
 
     <div class="about__body">
-      <p class="eyebrow" data-reveal>{about.eyebrow}</p>
-      <h2 class="about__title" data-reveal style="--reveal-delay:60">{about.title}</h2>
-      <p class="about__lead" data-reveal style="--reveal-delay:120">{about.lead}</p>
+      <h2 class="about__title" data-reveal>{about.title}</h2>
+      <p class="about__lead" data-reveal style="--reveal-delay:60">{about.lead}</p>
 
       {
         about.paragraphs.map((text, i) => (
-          <p class="about__text" data-reveal style={`--reveal-delay:${180 + i * 40}`}>
+          <p class="about__text" data-reveal style={`--reveal-delay:${120 + i * 40}`}>
             {text}
           </p>
         ))
       }
 
-      <div class="about__actions" data-reveal style="--reveal-delay:340">
+      <div class="about__actions" data-reveal style="--reveal-delay:300">
         {
           about.actions.map((action) => (
             <a
@@ -75,8 +74,7 @@ import { about } from '../data/content';
   }
 
   .about__title {
-    margin-top: 14px;
-    font-size: var(--step-3);
+    font-size: var(--step-heading);
   }
 
   .about__lead {
