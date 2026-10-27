@@ -143,6 +143,26 @@ export const projects = {
       links: [],
     },
     {
+      title: 'MarTech Sourcing Pipeline',
+      year: '2026',
+      body: 'A job search treated as a data orchestration problem. Instead of scrolling job boards, a Python pipeline queries multiple APIs for roles posted in the last 72 hours — remote and Southern California — then scores each one 0–100 for relevance and drops the noise, like backend and DevOps-heavy postings that do not fit a customer-facing MarTech brief. For whatever survives, it maps my past architecture work against each company’s integration endpoints, so I walk into the conversation already knowing where I fit. Qualified roles land in a structured Notion database for daily review.',
+      stack: ['Python', 'LLM scoring', 'REST APIs', 'Notion API'],
+      stats: [
+        { value: '72h', label: 'freshness window' },
+        { value: '0–100', label: 'relevance score' },
+        { value: '3', label: 'role families' },
+      ],
+      flowTitle: 'How it runs',
+      steps: [
+        'Query job APIs for the last 72 hours',
+        'Score each role 0–100 for relevance',
+        'Filter out backend and DevOps-heavy postings',
+        'Map past architecture work to each company’s endpoints',
+        'Push qualified roles into Notion',
+      ],
+      links: [],
+    },
+    {
       title: 'Social Media Agent',
       year: '2026',
       body: 'A Discord-first agent that watches for image uploads and answers with three caption options — sentimental, witty and short — written for a Vietnamese lifestyle persona. Gemini 2.5 Flash does the writing; the surrounding system handles the parts that make it usable: attachment detection, image preprocessing, graceful degradation when the model is slow, and logging that survives production traffic.',
