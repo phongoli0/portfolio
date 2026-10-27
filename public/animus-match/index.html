@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animus Match — Phong Truong</title>
+  <meta name="description" content="Animus Match, a card matching game built in 2019 with jQuery and vanilla CSS. The first application Phong Truong finished and polished." />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="fonts/cinzel-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <script src="vendor/jquery-3.7.1.min.js"></script>
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <a class="backlink" href="/">&larr; phongtruong.com</a>
+
+  <div class="header">
+    <div class="logo"></div>
+    <div class="banner"></div>
+  </div>
+  <div class="bottomArea">
+    <div class="gameInfoArea">
+      <div class="gamesPlayed">
+        GameS PlayeD
+        <div id="gamesPlayed">0</div>
+      </div>
+      <div class="attempts">
+        AttemptS
+        <div id="attempts">0</div>
+      </div>
+      <div class="accuracy">
+        AccuracY
+        <div id="accuracy">0.00%</div>
+      </div>
+      <div class="reset" id="reset">
+        <div>ReseT GamE</div>
+        <div class="resetButton"></div>
+      </div>
+      <div class="sound">
+        <div>SounD On/Off</div>
+        <button class="soundButton" id="pause" type="button" aria-label="Toggle sound" aria-pressed="false"></button>
+      </div>
+    </div>
+    <div class="gameArea"></div>
+  </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <img class="modal-picture" alt="You escaped the Animus" data-src="images/win.webp" />
+    </div>
+  </div>
+  <div class="overlay">
+    <div class="overlay-content">
+      <img src="images/landscape.gif" alt="" />
+      <div>Rotate phone for best experiencE</div>
+    </div>
+  </div>
+</body>
+
+</html>

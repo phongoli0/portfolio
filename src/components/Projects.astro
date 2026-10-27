@@ -38,21 +38,32 @@ import { projects } from '../data/content';
 
               {project.links.length > 0 && (
                 <p class="work__links">
-                  {project.links.map((link) => (
-                    <a href={link.href} target="_blank" rel="noopener">
-                      {link.label}
-                      <svg viewBox="0 0 16 16" aria-hidden="true" width="12" height="12">
-                        <path
-                          d="M4 12 12 4M6 4h6v6"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </a>
-                  ))}
+                  {project.links.map((link) => {
+                    const external = link.href.startsWith('http');
+                    return (
+                      <a
+                        href={link.href}
+                        target={external ? '_blank' : undefined}
+                        rel={external ? 'noopener' : undefined}
+                      >
+                        {link.label}
+                        <svg viewBox="0 0 16 16" aria-hidden="true" width="12" height="12">
+                          {external ? (
+                            <path
+                              d="M4 12 12 4M6 4h6v6"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.6"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          ) : (
+                            <path d="M5 3.2v9.6L13 8z" fill="currentColor" />
+                          )}
+                        </svg>
+                      </a>
+                    );
+                  })}
                 </p>
               )}
             </div>

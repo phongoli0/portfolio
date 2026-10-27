@@ -122,7 +122,7 @@ export type Project = {
 export const projects = {
   eyebrow: 'Selected work',
   title: 'Things I build',
-  subtitle: 'Client engagements and side projects I designed and shipped end to end.',
+  subtitle: 'Client engagements, side projects, and the first thing I ever finished.',
   items: [
     {
       title: 'Marketo to Braze Migration',
@@ -182,6 +182,28 @@ export const projects = {
         'Formatted reply in-channel',
       ],
       links: [{ label: 'GitHub', href: 'https://github.com/phongoli0/social-media-agent' }],
+    },
+    {
+      title: 'Animus Match',
+      year: '2019',
+      body: 'The first application I actually finished. A memory-match game — eighteen cards, nine Assassin’s Creed portraits — and the project where “working” turned into “finished”: a fresh Fisher–Yates shuffle every round, 3D card flips done in CSS transforms, attempt and accuracy tracking, sound that stays off until you ask for it, and a prompt to rotate your phone rather than squash the grid. It runs on plain HTML, CSS and jQuery with no build step at all. I keep it here as the baseline — playable, and a fair measure of the distance between it and the migrations above.',
+      stack: ['HTML', 'CSS', 'jQuery'],
+      stats: [
+        { value: '18', label: 'cards, nine pairs' },
+        { value: '0', label: 'build steps to ship it' },
+      ],
+      flowTitle: 'How it plays',
+      steps: [
+        'Eighteen cards shuffled with Fisher–Yates',
+        'Flip two and match the portraits',
+        'A miss flips back after one second',
+        'Accuracy updates on every attempt',
+        'Nine pairs opens the win screen',
+      ],
+      links: [
+        { label: 'Play it', href: '/animus-match/' },
+        { label: 'GitHub', href: 'https://github.com/phongoli0/animus-match' },
+      ],
     },
   ] as Project[],
 };
