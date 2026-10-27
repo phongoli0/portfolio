@@ -20,13 +20,40 @@ var attempts = 0;
 var accuracy = 0;
 var gamesPlayed = 0;
 let soundIsOn = true;
+var hideCardsTimer = null;
+var winModalTimer = null;
+// One Audio per sound, reused. Allocating a new element on every click made
+// each cue cut the previous one off and left the old elements playing.
+var audioCache = {};
 
 function initializeApp() {
   randomizeAndGenerateCards();
-  $(".card").click(cardClicked);
-  $(".resetButton").click(resetGame);
+  // Delegated so the cards never have to be re-bound after a reset.
+  $(".gameArea").on("click", ".card", cardClicked);
+  $("#reset").click(resetGame);
+  displayStats();
   themeSong();
   winModal();
+}
+
+function playSound(name) {
+  if (soundIsOn !== true) {
+    return;
+  }
+  var player = audioCache[name];
+  if (!player) {
+    player = new Audio("audio/" + name);
+    audioCache[name] = player;
+  }
+  try {
+    player.currentTime = 0;
+  } catch (e) {
+    // Not seekable until the first frame is buffered; just play from the start.
+  }
+  var attempt = player.play();
+  if (attempt && typeof attempt.catch === "function") {
+    attempt.catch(function () {});
+  }
 }
 
 function themeSong() {
@@ -80,34 +107,19 @@ function themeSong() {
 }
 
 function pickSound() {
-  if (soundIsOn === true) {
-    var player = new Audio("audio/hidden-blade.mp3");
-    player.play();
-  }
+  playSound("hidden-blade.mp3");
 }
 function wrongSound() {
-  if (soundIsOn === true) {
-    var player = new Audio("audio/ac-dmg.mp3");
-    player.play();
-  }
+  playSound("ac-dmg.mp3");
 }
 function matchSound() {
-  if (soundIsOn === true) {
-    var player = new Audio("audio/respawn.mp3");
-    player.play();
-  }
+  playSound("respawn.mp3");
 }
 function resetSound() {
-  if (soundIsOn === true) {
-    var player = new Audio("audio/eagle.mp3");
-    player.play();
-  }
+  playSound("eagle.mp3");
 }
 function winSound() {
-  if (soundIsOn === true) {
-    var player = new Audio("audio/eagle.mp3");
-    player.play();
-  }
+  playSound("eagle.mp3");
 }
 
 function shuffle(array) {
@@ -135,6 +147,9 @@ function randomizeAndGenerateCards() {
         .attr("src", "images/" + doubleImages[i]);
     var back = $('<img src="images/back.jpg">')
         .addClass("back vibrate");
+    // Dragging a card produced a ghost image and swallowed the click.
+    front.attr("draggable", "false");
+    back.attr("draggable", "false");
     card.append(back, front);
     container.append(card);
     $(".gameArea").append(container);
@@ -158,30 +173,32 @@ function cardClicked() {
     var first_card_src = first_card_clicked.find(".front").attr("src");
     var second_card_src = second_card_clicked.find(".front").attr("src");
     if (first_card_src === second_card_src) {
-      can_click_card = false;
       match_counter++;
       attempts++;
       accuracy = match_counter / attempts;
       displayStats();
       matchSound();
       can_click_card = true;
-      if (match_counter === total_possible_matches) {
-        setTimeout(openModal, 2000)
-      }
       first_card_clicked = null;
       second_card_clicked = null;
+      if (match_counter === total_possible_matches) {
+        // A cleared board is a finished game, same as resetting one.
+        gamesPlayed++;
+        displayStats();
+        winModalTimer = setTimeout(openModal, 2000);
+      }
       return;
     } else {
-      can_click_card = false;
       attempts++;
       accuracy = match_counter / attempts;
       displayStats();
-      setTimeout(hideBothCards, 1000);
+      hideCardsTimer = setTimeout(hideBothCards, 1000);
     }
   }
 }
 
 function hideBothCards() {
+  hideCardsTimer = null;
   wrongSound();
   first_card_clicked.parent().removeClass("click");
   second_card_clicked.parent().removeClass("click");
@@ -204,15 +221,26 @@ function resetStats() {
 }
 
 function resetGame() {
-  if(attempts >= 1){
+  // Anything still pending belongs to the board being replaced, so cancel it
+  // first: a live hideBothCards flipped cards on the new board, and a live
+  // openModal popped the win screen over a game that had just restarted.
+  clearTimeout(hideCardsTimer);
+  clearTimeout(winModalTimer);
+  hideCardsTimer = null;
+  winModalTimer = null;
+  first_card_clicked = null;
+  second_card_clicked = null;
+  can_click_card = true;
+
+  // A game counts as played once it has started and has not already been won.
+  if (attempts >= 1 && match_counter < total_possible_matches) {
     gamesPlayed++;
-    resetStats();
-    $(".gameArea").empty();
-    shuffle(images);
-    randomizeAndGenerateCards();
-    $(".card").click(cardClicked);
-    can_click_card = true;
   }
+  resetStats();
+  $(".gameArea").empty();
+  shuffle(images);
+  randomizeAndGenerateCards();
+  resetSound();
 }
 
 function winModal() {
@@ -225,7 +253,7 @@ function winModal() {
     if (picture && !picture.getAttribute("src") && picture.dataset.src) {
       picture.src = picture.dataset.src;
     }
-    modal.style.display = "block";
+    modal.style.display = "flex";
   };
   window.onclick = function (event) {
     if (event.target == modal) {

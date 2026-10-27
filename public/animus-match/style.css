@@ -18,20 +18,65 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-body {
-  height: 100vh;
-  background-image: url("images/background.jpg");
-  background-repeat: repeat;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-.header {
+/* The game is a fixed-ratio cabinet centred in the window. 16:10 is measured,
+   not chosen: every card image is square, so the 6x3 board is exactly 2:1, and
+   a square board plus the banner strip and stats bar lands the whole frame at
+   1.6:1. Cards stay square from a 1920 monitor down to 900px. */
+body {
+  min-block-size: 100dvh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background-color: #06060a;
+  background-image: url("images/background.jpg");
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+}
+
+.page {
+  inline-size: 100%;
   display: flex;
-  height: 15%;
-  padding-bottom: 0.5%;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.cabinet {
+  --cab-ratio: 1.6;
+  --chrome: 88px;
+
+  /* Fits by width and by height, so the frame never runs off the bottom. */
+  inline-size: min(1160px, 100%, (100dvh - var(--chrome)) * var(--cab-ratio));
+  aspect-ratio: var(--cab-ratio);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: clamp(4px, 0.6vw, 12px);
+  padding: clamp(6px, 0.8vw, 14px);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 14px;
+  background: rgb(8 8 10 / 62%);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 55%);
+  container-type: inline-size;
+}
+
+/* Without a floor the banner row is the first thing to collapse: on a short
+   landscape phone the board plus readable stats already exceed a 16:10 frame,
+   and the strip was being squeezed to zero height. The frame goes a little
+   taller than 1.6 there instead, which nobody notices; a missing banner they do.
+   The floor is in cqw so it scales with the frame, not the viewport. */
+.header {
+  display: grid;
+  grid-template-columns: 9fr 91fr;
+  gap: 1%;
+  min-block-size: clamp(9px, 2.2cqw, 46px);
 }
 
 .logo {
-  width: 15%;
   background-image: url("images/logo.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -39,52 +84,58 @@ body {
 }
 
 .banner {
-  width: 83.25%;
   background-image: url("images/banner.jpg");
   background-size: cover;
   border-radius: 8px;
-  margin-left: 0.75%;
-}
-
-.bottomArea {
-  height: 80%;
 }
 
 .gameInfoArea {
-  vertical-align: top;
-  display: inline-block;
-  height: 101.8%;
-  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: clamp(4px, 1cqw, 14px);
+  padding: clamp(4px, 0.7cqw, 10px) clamp(6px, 1.4cqw, 18px);
   background-color: #ffffff69;
   border-radius: 8px;
-  font-size: 18px;
-  text-align: center;
   font-family: "Cinzel", serif;
   font-weight: bold;
+  font-size: clamp(8px, 1.15cqw, 15px);
+  line-height: 1.2;
+  text-align: center;
 }
 
 .gameInfoArea > div {
-  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-inline-size: 0;
 }
 
-.gamesPlayed {
-  padding-top: 5%;
+/* The numbers are the point of the bar; they used to sit at the same size as
+   their own caption. */
+#gamesPlayed,
+#attempts,
+#accuracy {
+  font-size: 1.2em;
+}
+
+.reset {
+  cursor: pointer;
 }
 
 .gameArea {
-  height: 100%;
-  width: 84%;
-  display: inline-block;
-  margin-left: 0.5%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: clamp(3px, 0.45cqw, 7px);
+  aspect-ratio: 2 / 1;
+  min-block-size: 0;
 }
 
 .cardContainer {
-  height: 33%;
-  width: 16.15%;
-  float: left;
   perspective: 1000px;
-  margin-right: 0.5%;
-  margin-bottom: 0.5%;
   cursor: pointer;
 }
 
@@ -118,15 +169,14 @@ body {
 }
 
 .resetButton {
-  display: inline-block;
+  display: block;
   cursor: pointer;
   background: url("images/button1.png");
-  height: 50%;
-  width: 50%;
+  inline-size: clamp(16px, 2.6cqw, 30px);
+  block-size: clamp(16px, 2.6cqw, 30px);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin-top: 5%;
 }
 
 .resetButton:hover {
@@ -139,36 +189,34 @@ body {
 }
 
 .soundButton {
-  font-size: 1.5em;
-  margin-top: 5%;
+  font-size: clamp(12px, 1.7cqw, 20px);
   cursor: pointer;
 }
 
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-  height: 100%;
-  width: 100%;
+  inset: 0;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(0 0 0 / 70%);
 }
 
 .modal-content {
-  background-color: rgba(0, 0, 0, 0.4);
-  margin: 15% auto;
-  width: 50%;
-  height: 50%;
+  inline-size: min(400px, 100%);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
+/* The animation is 400x219. It used to be forced into a 50% x 50% box with no
+   object-fit, which squashed it by about 12%. */
 .modal-picture {
-  height: 100%;
-  width: 100%;
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: contain;
 }
 
 .overlay {
@@ -252,164 +300,48 @@ body {
 @media (orientation: portrait) {
   .overlay {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
     background: black;
     position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     z-index: 100;
   }
 
   .overlay-content {
     color: #fff;
     text-align: center;
-    font-size: 55px;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-transform: uppercase;
     font-family: "Cinzel", serif;
     font-weight: bold;
-    /* Added for hosting: a fixed 55px did not fit a phone, which is the exact
-       device this overlay exists for. */
-    box-sizing: border-box;
-    width: 100%;
-    padding-inline: 24px;
+    /* A fixed 55px did not fit a phone, which is the one device that sees this. */
+    max-inline-size: 100%;
     font-size: clamp(20px, 7vw, 55px);
     line-height: 1.15;
   }
 
-  .overlay-content img {
+  /* Set as a background rather than an <img> so desktop never downloads it;
+     the request only happens once this media query matches. */
+  .overlay-content::before {
+    content: "";
     display: block;
-    width: min(240px, 58vw);
-    height: auto;
+    inline-size: min(240px, 58vw);
+    aspect-ratio: 550 / 400;
     margin: 0 auto 16px;
+    background: url("images/landscape.gif") center / contain no-repeat;
   }
 }
 
-@media only screen and (device-width: 1024px){
-  .header {
-    height: 10%;
-    margin-bottom: .5%;
-  }
-
-  .banner {
-    width: 84.5%;
-  }
-
-  .bottomArea {
-    height: 90%;
-  }
-
-  .gameInfoArea {
-    display: flex;
-    height: 10%;
-    width: 100%;
-    font-size: 16px;
-    order: 2;
-    justify-content: space-around;
-    margin-bottom: 1%;
-    padding-top: 0.5%;
-  }
-
-  .gamesPlayed {
-    padding: 0;
-  }
-
-  .gameArea {
-    width: 100%;
-    height: 85%;
-    margin: 0;
-  }
-
-  .cardContainer{
-    height: 32%;
-    width: 16.16%;
-  }
-  .reset {
-    padding: 0;
-    font-size: 15px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .resetButton {
-    height: 100%;
-    width: 100%;
-  }
-
-  #reset {
-    height: 55%;
-  }
-}
-
-@media only screen and (device-width: 1366px){
-  .header {
-    height: 10%;
-    margin-bottom: .5%;
-  }
-
-  .banner {
-    width: 84.5%;
-  }
-
-  .bottomArea {
-    height: 90%;
-  }
-
-  .gameInfoArea {
-    display: flex;
-    height: 10%;
-    width: 100%;
-    font-size: 16px;
-    order: 2;
-    justify-content: space-around;
-    margin-bottom: 1%;
-    padding-top: 0.5%;
-  }
-
-  .gamesPlayed {
-    padding: 0;
-  }
-
-  .gameArea {
-    width: 100%;
-    height: 85%;
-    margin: 0;
-  }
-
-  .cardContainer{
-    height: 32%;
-    width: 16.16%;
-  }
-  .reset {
-    padding: 0;
-    font-size: 15px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .resetButton {
-    height: 100%;
-    width: 100%;
-  }
-
-  #reset {
-    height: 55%;
-  }
-}
 /* ------------------------------------------------------------------
- * Added for hosting on phongtruong.com — not part of the 2019 original.
+ * Added for hosting on phongtruong.com -- not part of the 2019 original.
  * Original rules above are untouched.
  * ------------------------------------------------------------------ */
 
+/* It used to be position: fixed, which put it on top of the banner art once the
+   frame was centred. It now sits in the page flow above the cabinet. */
 .backlink {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 500;
+  align-self: flex-end;
   padding: 7px 14px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.7);
