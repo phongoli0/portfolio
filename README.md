@@ -28,6 +28,7 @@ src/
 ├─ pages/index.astro  the page + the only client script
 └─ styles/global.css  tokens, reset, type scale, buttons, preference blocks
 public/               favicon, apple-touch-icon, résumé PDF
+public/animus-match/  the 2019 game, served as-is at /animus-match/
 legacy/               the previous static site, kept for reference — not built
 ```
 
