@@ -35,7 +35,7 @@ export const about = {
   lead: 'Phong Truong, Solutions Architect',
   paragraphs: [
     'I design and build the systems that carry a brand’s relationship with its customers — CRM engineering, frontend development and data architecture across Braze, Salesforce Marketing Cloud, Segment and Snowflake. The work I care about is translating a tangle of technical requirements into something with a number attached to it.',
-    'I’m at Etsy now as a Retention and Engagement Marketing Developer, architecting multi-touch lifecycle journeys and experiment designs in Braze Canvas, engineering dynamic multi-channel templates in HTML, CSS and Liquid, and keeping the pipelines between Braze, our warehouses and internal services honest.',
+    'I’m at Etsy now as a Retention and Engagement Marketing Developer, architecting multi-touch lifecycle journeys and experimentation frameworks in Braze Canvas, engineering dynamic multi-channel templates in HTML, CSS and Liquid, and keeping the pipelines between Braze, our warehouses and internal services honest.',
     'Before that, two years as a Solutions Architect at AbbVie. The work cut the CRM team’s weekly manual workload by 20%, lifted loyalty redemption above 30% through Braze Connected Content and REST APIs, and pioneered in-app push messaging for a 10% gain in offer redemption while taking pressure off email and SMS. Earlier, at November Charles, I ran email at scale: 25 million sends at 98% deliverability.',
     'I started with a psychology degree and a curiosity about why people do what they do, then moved into engineering. That background still shapes how I work — I’m most useful where business strategy and code meet, whether that’s a data model for an eight-million-profile customer base, leading a Marketo-to-Braze migration, or a Python RAG pipeline with guardrails. I hold both Braze certifications, Digital Strategist and Marketer.',
   ],
@@ -196,7 +196,7 @@ export const experience = {
       period: '2026 — Present',
       title: 'Retention and Engagement Marketing Developer',
       company: 'Etsy · Brooklyn, NY (Remote)',
-      body: 'Lifecycle engineering and multi-channel campaign automation across email, push and SMS within the REM Operations & Insights team. Architecting multi-touch customer journeys and experiment designs in Braze Canvas, engineering modular responsive templates with advanced Liquid scripting, and connecting the pipelines between Braze, our data warehouses and internal services so customer events land reliably and attribute correctly.',
+      body: 'Lifecycle engineering and multi-channel campaign automation across email, push and SMS within the REM Operations & Insights team. Architecting multi-touch customer journeys and experimentation frameworks in Braze Canvas, engineering modular responsive templates with advanced Liquid scripting, and connecting the pipelines between Braze, our data warehouses and internal services so customer events land reliably and attribute correctly.',
       tags: ['Braze Canvas', 'Liquid', 'HTML/CSS', 'Postman', 'Litmus'],
     },
     {
