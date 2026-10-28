@@ -122,28 +122,8 @@ export type Project = {
 export const projects = {
   eyebrow: 'Selected work',
   title: 'Things I build',
-  subtitle: 'Client engagements, side projects, and the first thing I ever finished.',
+  subtitle: 'Side projects I designed and shipped end to end, and the first thing I ever finished.',
   items: [
-    {
-      title: 'Marketo to Braze Migration',
-      year: '2025 — 2026',
-      body: 'A mid-size enterprise moving its lifecycle marketing off Marketo and onto Braze. I led the engagement as the freelance solutions architect — owning the technical plan, the data model, the migration itself, and the cutover. Over two million profiles, 25+ playbooks and 300+ emails crossed platforms. The hard part was never the API calls; it was deciding what the old platform’s accumulated behaviour was actually supposed to do, and rebuilding only that.',
-      stack: ['Braze', 'Marketo', 'API Integration', 'Data Migration'],
-      stats: [
-        { value: '2M+', label: 'profiles migrated' },
-        { value: '25+', label: 'playbooks rebuilt' },
-        { value: '300+', label: 'emails migrated' },
-      ],
-      flowTitle: 'Engagement phases',
-      steps: [
-        'Current-state audit and asset inventory',
-        'Data model and audience mapping',
-        'Migrate 2M+ profiles, 25+ playbooks and 300+ emails',
-        'Integration, QA and parallel run',
-        'Cutover and stabilisation',
-      ],
-      links: [],
-    },
     {
       title: 'MarTech Sourcing Pipeline',
       year: '2026',
@@ -186,11 +166,11 @@ export const projects = {
     {
       title: 'Animus Match',
       year: '2019',
-      body: 'The first application I actually finished. A memory-match game — eighteen cards, nine Assassin’s Creed portraits — and the project where “working” turned into “finished”: a fresh Fisher–Yates shuffle every round, 3D card flips done in CSS transforms, attempt and accuracy tracking, sound that stays off until you ask for it, and a prompt to rotate your phone rather than squash the grid. It runs on plain HTML, CSS and jQuery with no build step at all. I keep it here as the baseline — playable, and a fair measure of the distance between it and the migrations above.',
+      body: 'Assassin’s Creed was my favorite game series, and that is the whole reason this exists — I wanted to build something set in a world I already cared about, and a card game was small enough that I could actually finish it. Eighteen cards, nine assassins, and the first project I ever took all the way to done: a fresh shuffle every round, 3D flips in CSS transforms, accuracy tracked on every attempt, and a nudge to rotate your phone rather than squash the grid. Plain HTML, CSS and jQuery, no build step. It stays here as the baseline — the point I measure everything else against.',
       stack: ['HTML', 'CSS', 'jQuery'],
       stats: [
         { value: '18', label: 'cards, nine pairs' },
-        { value: '0', label: 'build steps to ship it' },
+        { value: '1', label: 'file of game logic' },
       ],
       flowTitle: 'How it plays',
       steps: [
@@ -226,7 +206,7 @@ export const experience = {
       period: '2025 — 2026',
       title: 'Solutions Architect, MarTech',
       company: 'Independent · Orange County, CA (Remote)',
-      body: 'End-to-end MarTech architecture and technical consulting for mid-to-enterprise clients: CRM orchestration, cross-platform migrations, and lifecycle automation. Led a Marketo-to-Braze migration for a mid-size enterprise as the engagement’s solutions architect. Architected data pipelines connecting customer data platforms and warehouses to downstream messaging channels, cutting synchronization latency and removing manual operational overhead.',
+      body: 'End-to-end MarTech architecture and technical consulting for mid-to-enterprise clients: CRM orchestration, cross-platform migrations, and lifecycle automation. Led a Marketo-to-Braze migration for a mid-size enterprise as the engagement’s solutions architect — 2M+ profiles, 25+ playbooks and 300+ emails moved across platforms, from the technical plan and data model through to cutover. Architected data pipelines connecting customer data platforms and warehouses to downstream messaging channels, cutting synchronization latency and removing manual operational overhead.',
       tags: ['MarTech Architecture', 'CRM Orchestration', 'Marketo → Braze', 'Data Pipelines'],
     },
     {
